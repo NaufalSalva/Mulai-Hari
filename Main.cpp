@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include "apps/utils/data_structure.cpp"
+#include "apps/feature/habbits.cpp"
 #include "apps/utils/validation.cpp"
 #include "apps/data/data_manager.cpp"
 #include "apps/auth/register.cpp"
