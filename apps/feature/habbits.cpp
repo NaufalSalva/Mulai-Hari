@@ -170,7 +170,6 @@ HabitNode* bangunTreeDariHobi(string username,string daftarHobi)
             hobi="";
         } else hobi+=daftarHobi[i];
     }
-    generateSubHabitOtomatis(root);
     return root;
 }
 
