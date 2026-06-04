@@ -63,7 +63,7 @@ void tampilkanDashboard(string username, string email, string daftarHobi)
 
             case 2:
                 system("cls");
-                inputAktivitas();
+                inputAktivitas(root);
                 system("pause");
                 break;
 

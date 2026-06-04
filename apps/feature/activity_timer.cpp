@@ -101,23 +101,22 @@ public:
 };
 
 void fokusHariSessionBaru(HabitNode* root) {
-    // Step 1: Setup Sesi (Pilih Habit, Sub-Habit, Template Timer)
+   
     SesiFokusAktif sesi;
     if (!setupSesiFokus(root, sesi)) {
         cout << "Setup sesi gagal!\n";
         return;
     }
     
-    // Step 2: Tampilkan ringkasan sebelum memulai
     tampilkanRingkasanSesi(sesi);
     
-    // Step 3: Jalankan timer
+
     FokusHariTimer timer(sesi.durasi_menit);
     
     while (!timer.isStopped()) {
         int sisa_detik = timer.getTotalDetik() - timer.getDetikBerlalu();
         
-        // Tampilkan timer
+    
         string waktu_str;
         timer.formatWaktu(sisa_detik, waktu_str);
         
@@ -142,7 +141,7 @@ void fokusHariSessionBaru(HabitNode* root) {
         cout << "Kontrol: [P] Pause/Resume | [S] Stop\n";
         cout << "==================================================\n";
         
-        // Input keyboard
+     
         if (_kbhit()) {
             int key = _getch();
             if (key == 'P' || key == 'p') {
@@ -156,7 +155,7 @@ void fokusHariSessionBaru(HabitNode* root) {
             }
         }
         
-        // Update timer
+   
         if (!timer.isPaused()) {
             this_thread::sleep_for(chrono::milliseconds(1000));
             timer.incrementDetik();
@@ -164,7 +163,7 @@ void fokusHariSessionBaru(HabitNode* root) {
             this_thread::sleep_for(chrono::milliseconds(100));
         }
         
-        // Selesai?
+   
         if (timer.isComplete()) {
             system("cls");
             cout << "\n";
@@ -176,7 +175,7 @@ void fokusHariSessionBaru(HabitNode* root) {
         }
     }
     
-    // Step 4: Buat hasil sesi
+
     int waktu_aktual = timer.getDetikBerlalu();
     bool selesai_sempurna = timer.isComplete();
     
@@ -189,10 +188,10 @@ void fokusHariSessionBaru(HabitNode* root) {
         selesai_sempurna
     );
     
-    // Step 5: Tampilkan hasil
+ 
     tampilkanHasilSesi(hasil);
     
-    // Step 6: Menu setelah sesi
+
     menuSetelahSesi(hasil);
 }
 
