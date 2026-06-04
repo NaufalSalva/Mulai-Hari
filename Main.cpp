@@ -6,6 +6,7 @@
 #include "apps/utils/validation.cpp"
 #include "apps/data/data_manager.cpp"
 #include "apps/auth/register.cpp"
+#include "apps/view/dashboard.cpp"
 #include "apps/auth/login.cpp"
 using namespace std;
 
