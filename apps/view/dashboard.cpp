@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include "../feature/activity_timer.cpp"
 using namespace std;
 
 void tampilkanDashboard(string username, string email, string daftarHobi)
@@ -33,7 +34,8 @@ void tampilkanDashboard(string username, string email, string daftarHobi)
         cout << "--------------------------------------" << endl;
         cout << "1. Lihat Hobi" << endl;
         cout << "2. Catat Aktivitas" << endl;
-        cout << "3. Logout" << endl;
+        cout << "3. Mulai Fokus Hari" << endl;
+        cout << "0. Logout" << endl;
         cout << "======================================" << endl;
         cout << "Pilih menu: ";
         cin >> pilihan;
@@ -59,6 +61,10 @@ void tampilkanDashboard(string username, string email, string daftarHobi)
                 break;
 
             case 3:
+                menuFokusHari();
+                break;
+
+            case 0:
                 berjalan = false;
                 cout << "\n[Sistem] Logout berhasil." << endl;
                 system("pause");
