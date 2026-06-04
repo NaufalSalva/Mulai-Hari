@@ -72,7 +72,7 @@ void tampilkanDashboard(string username, string email, string daftarHobi)
                 break;
 
             case 3:
-                menuFokusHari();
+                menuFokusHari(root);
                 break;
 
             case 4: cetakTreeLCRS(root); system("pause"); break;
