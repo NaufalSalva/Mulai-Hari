@@ -24,6 +24,10 @@ struct StackNode {
     StackNode* next;
 };
 
+struct AktivitasStack {
+    StackNode* top;
+};
+
 struct User {
     string username;
     string email;
