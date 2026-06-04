@@ -1,18 +1,19 @@
 #include <iostream>
 #include <string>
 #include "apps/utils/data_structure.cpp"
-#include "apps/feature/habbits.cpp"
 #include "apps/utils/validation.cpp"
+#include "apps/feature/habbits.cpp"
 #include "apps/data/data_manager.cpp"
-#include "apps/auth/register.cpp"
+#include "apps/feature/activity_timer.cpp"
+#include "apps/feature/Create_Habbits.cpp"
+#include "apps/feature/Delete_Habbits.cpp"
 #include "apps/view/dashboard.cpp"
 #include "apps/auth/login.cpp"
-using namespace std;
+#include "apps/auth/register.cpp"
 
 int main() {
-   int pilihan;
    bool berjalan = true;
-
+    int pilihan;
   while (berjalan) {
         system("cls"); // Bersihkan layar terminal tiap kembali ke menu utama
         cout << "==================================================" << endl;
