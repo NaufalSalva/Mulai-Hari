@@ -28,6 +28,7 @@ void tampilkanJenisMasakan() {
     cout << "1. Masakan Tradisional\n";
     cout << "2. Masakan Luar Negeri\n";
     cout << "3. Masakan Cepat Saji\n";
+    cout << "4. Lainnya\n";
     cout << "========================================== \n";
 }
 
@@ -79,6 +80,7 @@ FormMemasak inputFormMemasak() {
         case 1: form.jenisMasakan = "Masakan Tradisional"; break;
         case 2: form.jenisMasakan = "Masakan Luar Negeri"; break;
         case 3: form.jenisMasakan = "Masakan Cepat Saji"; break;
+        case 4: form.jenisMasakan = "Lainnya"; break;
         default: form.jenisMasakan = "Masakan Tradisional";
     }
     cin.ignore();
