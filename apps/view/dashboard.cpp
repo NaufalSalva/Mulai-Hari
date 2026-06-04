@@ -1,9 +1,9 @@
 #include <iostream>
 #include <string>
-#include "../feature/activity_timer.cpp"
-#include "../feature/Create_Habbits.cpp"
-#include "../feature/Delete_Habbits.cpp"
+
 using namespace std;
+
+
 
 
 void tampilkanDashboard(string username, string email, string daftarHobi)
@@ -69,9 +69,9 @@ void tampilkanDashboard(string username, string email, string daftarHobi)
                 system("pause");
                 break;
 
-            // case 3:
-            //     menuFokusHari();
-            //     break;
+            case 3:
+                menuFokusHari();
+                break;
 
             case 4: cetakTreeLCRS(root); system("pause"); break;
             case 5: tambahSubHabitUser(root); system("pause"); break;
