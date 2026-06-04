@@ -5,16 +5,37 @@
 
 using namespace std;
 
-void hapusAktivitasTerakhir (AktivitasStack& stack) {
-    if (stack.top == nullptr) {
-        cout << "Tidak ada aktivitas yang dapat dihapus." << endl;
+bool popAktivitas(AktivitasStack& stack);
+
+void hapusAktivitasTerakhir(AktivitasStack& stack)
+{
+    if (stack.top == nullptr)
+    {
+        cout << "\nTidak ada aktivitas yang dapat dihapus.\n";
         return;
     }
 
-    cout << "Aktivitas terakhir yang akan dihapus:" << endl;
-    cout << stack.top->data.hobi << endl;
+    cout << "\n=====================================\n";
+    cout << "     KONFIRMASI HAPUS AKTIVITAS\n";
+    cout << "=====================================\n";
 
-    popAktivitas(stack);
+    cout << "Hobi   : " << stack.top->data.hobi << endl;
+    cout << "Detail : " << stack.top->data.detail << endl;
+    cout << "Mood   : " << stack.top->data.mood << endl;
 
-    cout << "Aktivitas terakhir berhasil dihapus." << endl;
+    char konfirmasi;
+
+    cout << "\nYakin ingin menghapus? (Y/N): ";
+    cin >> konfirmasi;
+
+    if (konfirmasi == 'Y' || konfirmasi == 'y')
+    {
+        popAktivitas(stack);
+
+        cout << "\nAktivitas berhasil dihapus.\n";
+    }
+    else
+    {
+        cout << "\nPenghapusan dibatalkan.\n";
+    }
 }
