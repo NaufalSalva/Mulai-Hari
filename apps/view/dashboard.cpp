@@ -42,6 +42,8 @@ void tampilkanDashboard(string username, string email, string daftarHobi)
         cout << "4. Lihat Struktur Habit Tree\n";
         cout << "5. Tambah Sub Habit\n";
         cout << "6. Hapus Sub Habit\n";
+        cout << "7. Hapus Aktivitas Terakhir\n";
+        cout << "8. Riwayat Aktivitas\n";
         cout << "0. Logout" << endl;
         cout << "======================================" << endl;
         cout << "Pilih menu: ";
@@ -74,7 +76,8 @@ void tampilkanDashboard(string username, string email, string daftarHobi)
             case 4: cetakTreeLCRS(root); system("pause"); break;
             case 5: tambahSubHabitUser(root); system("pause"); break;
             case 6: hapusSubHabit(root); system("pause"); break;
-
+            case 7: hapusAktivitasTerakhir(root); system("pause"); break;
+            case 8: tampilkanRiwayatAktivitas(root); system("pause"); break;
             case 0:
                 berjalan = false;
                 cout << "\n[Sistem] Logout berhasil." << endl;
