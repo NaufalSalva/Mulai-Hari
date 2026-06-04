@@ -1,3 +1,6 @@
+#ifndef DATA_STRUCTURE_CPP
+#define DATA_STRUCTURE_CPP
+
 #include <iostream>
 #include <string>
 
@@ -26,3 +29,5 @@ struct User {
     string email;
     string password;
 };
+
+#endif

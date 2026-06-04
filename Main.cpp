@@ -2,7 +2,6 @@
 #include <string>
 #include "apps/utils/data_structure.cpp"
 #include "apps/feature/habbits.cpp"
-#include "apps/feature/activity_timer.cpp"
 #include "apps/utils/validation.cpp"
 #include "apps/data/data_manager.cpp"
 #include "apps/auth/register.cpp"
@@ -24,7 +23,7 @@ int main() {
         cout << "2. Buat Akun Baru (Register)" << endl;
         cout << "3. Keluar Aplikasi" << endl;
         cout << "--------------------------------------------------" << endl;
-        cout << "Pilih Menu (1-4): ";
+        cout << "Pilih Menu (1-3): ";
         cin >> pilihan;
 
         switch (pilihan) {
