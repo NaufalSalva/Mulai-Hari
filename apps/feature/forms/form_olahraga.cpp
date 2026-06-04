@@ -5,14 +5,14 @@
 using namespace std;
 
 struct FormOlahraga {
-    string jenis_olahraga;
-    int durasi_menit;
+    string jenisOlahraga;
+    int durasiMenit;
     string intensitas;
-    float jarak_km;
-    int kalori_terbakar;
-    string kondisi_fisik;
+    float jarakKm;
+    int kaloriTerbakar;
+    string kondisiFisik;
     string catatan;
-    string waktu_aktivitas;
+    string waktuAktivitas;
 };
 
 bool validasiJenisOlahraga(const string& jenis) {
@@ -115,28 +115,28 @@ FormOlahraga inputFormOlahraga() {
     system("cls");
     cout << "\n";
     cout << "=============================================\n";
-    cout << "          FORMULIR AKTIVITAS OLAHRAGA        \n";
+    cout << "              FORM AKTIVITAS OLAHRAGA        \n";
     cout << "=============================================\n\n";
     
 
     cout << "============= 1. JENIS OLAHRAGA =============\n";
     cout << "Lari, Gym, Yoga, Renang, Bersepeda\n";
     cout << "Masukkan jenis: ";
-    getline(cin, form.jenis_olahraga);
+    getline(cin, form.jenisOlahraga);
     
-    while (!validasiJenisOlahraga(form.jenis_olahraga)) {
+    while (!validasiJenisOlahraga(form.jenisOlahraga)) {
         cout << "Jenis olahraga tidak valid! Masukkan lagi: ";
-        getline(cin, form.jenis_olahraga);
+        getline(cin, form.jenisOlahraga);
     }
     
 
     cout << "============= 2. DURASI OLAHRAGA =============\n";
     cout << "Masukkan durasi (dalam menit): ";
-    cin >> form.durasi_menit;
+    cin >> form.durasiMenit;
     
-    while (!validasiDurasi(form.durasi_menit)) {
+    while (!validasiDurasi(form.durasiMenit)) {
         cout << "Durasi harus 1-480 menit! Masukkan lagi: ";
-        cin >> form.durasi_menit;
+        cin >> form.durasiMenit;
     }
     cin.ignore();
     
@@ -150,37 +150,37 @@ FormOlahraga inputFormOlahraga() {
     
 
     cout << "\n============= 4. JARAK OLAHRAGA =============\n";
-    cout << "   Masukkan jarak (dalam km): ";
-    cin >> form.jarak_km;
+    cout << "Masukkan jarak (dalam km): ";
+    cin >> form.jarakKm;
     
-    while (!validasiJarak(form.jarak_km)) {
+    while (!validasiJarak(form.jarakKm)) {
         cout << "Jarak harus 0-100 km! Masukkan lagi: ";
-        cin >> form.jarak_km;
+        cin >> form.jarakKm;
     }
     cin.ignore();
     
 
-    form.kalori_terbakar = estimasiKalori(form.jenis_olahraga, form.durasi_menit, form.intensitas);
+    form.kaloriTerbakar = estimasiKalori(form.jenisOlahraga, form.durasiMenit, form.intensitas);
     cout << "============= 5. ESTIMASI KALORI TERBAKAR =============\n";
-    cout << "Estimasi: " << form.kalori_terbakar << " kalori (otomatis)\n";
+    cout << "Estimasi: " << form.kaloriTerbakar << " kalori (otomatis)\n";
     
 
     cout << "\n============= 6. KONDISI FISIK =============\n";
     cout << "Contoh: Segar, Lelah, Kesakitan, Pulih\n";
     cout << "Masukkan kondisi: ";
-    getline(cin, form.kondisi_fisik);
+    getline(cin, form.kondisiFisik);
     
 
     cout << "\n============= 7. WAKTU AKTIVITAS =============\n";
     tampilkanMenuWaktu();
-    cout << "   Pilih waktu (1-4): ";
+    cout << "Pilih waktu (1-4): ";
     cin >> pilihan;
-    form.waktu_aktivitas = pilihanWaktu(pilihan);
+    form.waktuAktivitas = pilihanWaktu(pilihan);
     cin.ignore();
     
 
     cout << "\n============= 8. CATATAN TAMBAHAN =============\n";
-    cout << "   Catatan: ";
+    cout << "Catatan: ";
     getline(cin, form.catatan);
     
     return form;
@@ -191,18 +191,18 @@ string standardisasiDetailOlahraga(const FormOlahraga& form) {
     string detail = "";
     
     // Format: [Jenis] | [Durasi]min | [Intensitas] | Kalori: [Kalori] | [Kondisi] | [Waktu]
-    detail += form.jenis_olahraga;
+    detail += form.jenisOlahraga;
     detail += " | ";
-    detail += to_string(form.durasi_menit) + " menit";
+    detail += to_string(form.durasiMenit) + " menit";
     
-    if (form.jarak_km > 0) {
-        detail += " | " + to_string(form.jarak_km) + " km";
+    if (form.jarakKm > 0) {
+        detail += " | " + to_string(form.jarakKm) + " km";
     }
     
     detail += " | " + form.intensitas;
-    detail += " | Kalori: " + to_string(form.kalori_terbakar);
-    detail += " | Kondisi: " + form.kondisi_fisik;
-    detail += " | Waktu: " + form.waktu_aktivitas;
+    detail += " | Kalori: " + to_string(form.kaloriTerbakar);
+    detail += " | Kondisi: " + form.kondisiFisik;
+    detail += " | Waktu: " + form.waktuAktivitas;
     
     if (!form.catatan.empty()) {
         detail += " | Catatan: " + form.catatan;
@@ -221,17 +221,17 @@ void tampilkanPreviewOlahraga(const FormOlahraga& form) {
     
     cout << "Detail Aktivitas:\n";
     cout << "=============================================\n";
-    cout << "Jenis Olahraga : " << form.jenis_olahraga << "\n";
-    cout << "Durasi         : " << form.durasi_menit << " menit\n";
+    cout << "Jenis Olahraga : " << form.jenisOlahraga << "\n";
+    cout << "Durasi         : " << form.durasiMenit << " menit\n";
     
-    if (form.jarak_km > 0) {
-        cout << "Jarak          : " << fixed << setprecision(2) << form.jarak_km << " km\n";
+    if (form.jarakKm > 0) {
+        cout << "Jarak          : " << fixed << setprecision(2) << form.jarakKm << " km\n";
     }
     
     cout << "Intensitas     : " << form.intensitas << "\n";
-    cout << "Kalori Terbakar: " << form.kalori_terbakar << " kkal\n";
-    cout << "Kondisi Fisik  : " << form.kondisi_fisik << "\n";
-    cout << "Waktu Aktivitas: " << form.waktu_aktivitas << "\n";
+    cout << "Kalori Terbakar: " << form.kaloriTerbakar << " kkal\n";
+    cout << "Kondisi Fisik  : " << form.kondisiFisik << "\n";
+    cout << "Waktu Aktivitas: " << form.waktuAktivitas << "\n";
     
     if (!form.catatan.empty()) {
         cout << "Catatan        : " << form.catatan << "\n";
