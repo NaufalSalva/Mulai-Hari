@@ -148,3 +148,34 @@ void tampilkanDaftarHobi(const string& daftarHobi) {
         }
     }
 }
+
+
+
+AktivitasStack historyStack;
+
+void inisialisasiStack() {
+    historyStack.top = nullptr;
+}
+
+void pushAktivitas(AktivitasStack& stack, const LogAktivitasNode& aktivitas)
+{
+    StackNode* nodeBaru = new StackNode;
+
+    nodeBaru->data = aktivitas;
+    nodeBaru->next = stack.top;
+
+    stack.top = nodeBaru;
+}
+
+bool popAktivitas(AktivitasStack& stack) {
+    if (stack.top == nullptr) {
+        return false;
+    }
+
+    StackNode* nodeHapus = stack.top;
+    stack.top = stack.top->next;
+
+    delete nodeHapus;
+
+    return true;
+}
