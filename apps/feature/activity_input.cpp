@@ -1,7 +1,4 @@
 #include <iostream>
-#include <string>
-#include "../utils/data_structure.cpp"
-#include "../data/data_manager.cpp"
 #include "forms/form_coding.cpp"
 #include "forms/form_gaming.cpp"
 #include "forms/form_membaca.cpp"

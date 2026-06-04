@@ -1,7 +1,7 @@
 #include <iostream>
+#pragma once
 #include <string>
-#include "../data/data_manager.cpp"
-#include "../utils/data_structure.cpp"
+
 
 using namespace std;
 
