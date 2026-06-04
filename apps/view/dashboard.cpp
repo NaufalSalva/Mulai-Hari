@@ -16,24 +16,26 @@ void tampilkanDashboard(string username, string email, string daftarHobi)
     {
         system("cls");
 
-        cout << "======================================" << endl;
-        cout << "          DASHBOARD MULAIHARI         " << endl;
-        cout << "======================================" << endl;
+        cout << "==================================================" << endl;
+        cout << "                  MULAIHARI                       " << endl;
+        cout << "             Dashboard Produktivitas              " << endl;
+        cout << "==================================================" << endl;
 
-        cout << "Halo, " << username << endl;
-        cout << "Email : " << email << endl;
+        cout << "Halo, " << username << "!" << endl;
+        cout << "Selamat datang kembali di MulaiHari." << endl;
 
-        cout << "--------------------------------------" << endl;
+        cout << "--------------------------------------------------" << endl;
         cout << "HOBI KAMU" << endl;
-        cout << "--------------------------------------" << endl;
-        cout << daftarHobi << endl;
-        cout << "--------------------------------------" << endl;
-        cout << "RINGKASAN HARI INI" << endl;
-        cout << "--------------------------------------" << endl;
-        cout << "Total Aktivitas : 0" << endl;
-        cout << "Kondisi Mental  : Belum ada" << endl;
+        cout << "--------------------------------------------------" << endl;
+        tampilkanDaftarHobi(daftarHobi);
 
-        cout << "--------------------------------------" << endl;
+        cout << "--------------------------------------------------" << endl;
+        cout << "RINGKASAN HARI INI" << endl;
+        cout << "--------------------------------------------------" << endl;
+        cout << "   Total Aktivitas : 0" << endl;
+        cout << "   Kondisi Mental  : Belum ada" << endl;
+
+        cout << "--------------------------------------------------" << endl;
         cout << "MENU DASHBOARD" << endl;
         cout << "--------------------------------------" << endl;
         cout << "1. Lihat Hobi" << endl;
@@ -51,18 +53,18 @@ void tampilkanDashboard(string username, string email, string daftarHobi)
         {
             case 1:
                 system("cls");
-                cout << "======================================" << endl;
-                cout << "              DAFTAR HOBI             " << endl;
-                cout << "======================================" << endl;
-                cout << daftarHobi << endl;
+                cout << "==================================================" << endl;
+                cout << "                   DAFTAR HOBI                    " << endl;
+                cout << "==================================================" << endl;
+                tampilkanDaftarHobi(daftarHobi);
                 system("pause");
                 break;
 
             case 2:
                 system("cls");
-                cout << "======================================" << endl;
-                cout << "           CATAT AKTIVITAS            " << endl;
-                cout << "======================================" << endl;
+                cout << "==================================================" << endl;
+                cout << "                CATAT AKTIVITAS                   " << endl;
+                cout << "==================================================" << endl;
                 cout << "Fitur catat aktivitas belum dibuat." << endl;
                 system("pause");
                 break;
@@ -85,5 +87,6 @@ void tampilkanDashboard(string username, string email, string daftarHobi)
                 cout << "\n[Sistem] Pilihan tidak valid! Silakan coba lagi." << endl;
                 system("pause");
         }
+
     }
 }
