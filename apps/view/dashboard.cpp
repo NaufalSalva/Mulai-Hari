@@ -1,12 +1,16 @@
 #include <iostream>
 #include <string>
 #include "../feature/activity_timer.cpp"
+#include "../feature/Create_Habbits.cpp"
+#include "../feature/Delete_Habbits.cpp"
 using namespace std;
+
 
 void tampilkanDashboard(string username, string email, string daftarHobi)
 {
     int pilihan;
     bool berjalan = true;
+    HabitNode* root = bangunTreeDariHobi(username, daftarHobi);
 
     while (berjalan)
     {
@@ -35,6 +39,9 @@ void tampilkanDashboard(string username, string email, string daftarHobi)
         cout << "1. Lihat Hobi" << endl;
         cout << "2. Catat Aktivitas" << endl;
         cout << "3. Mulai Fokus Hari" << endl;
+        cout << "4. Lihat Struktur Habit Tree\n";
+        cout << "5. Tambah Sub Habit\n";
+        cout << "6. Hapus Sub Habit\n";
         cout << "0. Logout" << endl;
         cout << "======================================" << endl;
         cout << "Pilih menu: ";
@@ -60,9 +67,13 @@ void tampilkanDashboard(string username, string email, string daftarHobi)
                 system("pause");
                 break;
 
-            case 3:
-                menuFokusHari();
-                break;
+            // case 3:
+            //     menuFokusHari();
+            //     break;
+
+            case 4: cetakTreeLCRS(root); system("pause"); break;
+            case 5: tambahSubHabitUser(root); system("pause"); break;
+            case 6: hapusSubHabit(root); system("pause"); break;
 
             case 0:
                 berjalan = false;

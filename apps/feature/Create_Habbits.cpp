@@ -1,7 +1,6 @@
 #include <iostream>
 #include <string>
-#include "../utils/data_structure.cpp"
-#include "../feature/habbits.cpp"
+
 using namespace std;
 
 void tambahSubHabitUser(HabitNode* root)
