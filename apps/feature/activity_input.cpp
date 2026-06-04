@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 #include "forms/form_coding.cpp"
 #include "forms/form_gaming.cpp"
@@ -12,7 +13,7 @@
 
 using namespace std;
 
-void inputAktivitas()
+void inputAktivitas(HabitNode* root)
 {
     LogAktivitasNode aktivitas;
 
@@ -25,16 +26,24 @@ void inputAktivitas()
     cout << "=====================================\n\n";
 
     cout << "Pilih Hobi:\n";
-    cout << "1. Coding\n";
-    cout << "2. Gaming\n";
-    cout << "3. Membaca\n";
-    cout << "4. Olahraga\n";
-    cout << "5. Menulis\n";
-    cout << "6. Musik\n";
-    cout << "7. Memasak\n";
-    cout << "8. Menonton\n";
-    cout << "9. Traveling\n";
-    cout << "10. Belajar\n";
+    int nomor = 1;
+    HabitNode* temp = root->child;
+    while (temp != nullptr) {
+        cout << nomor << ". " << temp->nama << "\n";
+        temp = temp->sibling;
+        nomor++;
+    }
+
+    // cout << "1. Coding\n";
+    // cout << "2. Gaming\n";
+    // cout << "3. Membaca\n";
+    // cout << "4. Olahraga\n";
+    // cout << "5. Menulis\n";
+    // cout << "6. Musik\n";
+    // cout << "7. Memasak\n";
+    // cout << "8. Menonton\n";
+    // cout << "9. Traveling\n";
+    // cout << "10. Belajar\n";
 
     cout << "\nPilihan: ";
     cin >> pilihan;

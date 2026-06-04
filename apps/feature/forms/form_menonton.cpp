@@ -21,29 +21,6 @@ bool validasiJudulTontonan(const string& judul) {
     return true;
 }
 
-bool validasiDurasi(int durasi_menit) {
-    return (durasi_menit > 0 && durasi_menit <= 480);
-}
-
-
-void tampilkanMenuWaktu() {
-    cout << "\n========== PILIH WAKTU AKTIVITAS ==========\n";
-    cout << "1. Pagi    (05:00 - 11:00)                   \n";
-    cout << "2. Siang   (11:00 - 15:00)                   \n";
-    cout << "3. Sore    (15:00 - 18:00)                   \n";
-    cout << "4. Malam   (18:00 - 23:00)                   \n";
-    cout << "========================================== \n";
-}
-
-string pilihanWaktu(int pilihan) {
-    switch(pilihan) {
-        case 1: return "Pagi";
-        case 2: return "Siang";
-        case 3: return "Sore";
-        case 4: return "Malam";
-        default: return "Siang";
-    }
-}
 
 
 FormMenonton inputFormMenonton() {
@@ -118,7 +95,7 @@ FormMenonton inputFormMenonton() {
         case 4: form.platformTontonan = "TV"; break;
         case 5: form.platformTontonan = "Prime Video"; break;
         case 6: form.platformTontonan = "Lainnya"; break;
-        deafault: form.platformTontonan = "Lainnya"; break;
+        default: form.platformTontonan = "Lainnya"; break;
     }
 
      cout << "\n============= 5. GENRE TONTONAN =============\n";
@@ -139,7 +116,7 @@ FormMenonton inputFormMenonton() {
         case 4: form.genreTontonan = "Horror"; break;
         case 5: form.genreTontonan = "Romance"; break;
         case 6: form.genreTontonan = "Lainnya"; break;
-        deafault: form.genreTontonan = "Lainnya"; break;
+        default: form.genreTontonan = "Lainnya"; break;
     }
 
     cout << "\n============= 6. WAKTU AKTIVITAS =============\n";

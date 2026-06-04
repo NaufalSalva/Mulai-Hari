@@ -5,6 +5,7 @@
 #include "apps/feature/habbits.cpp"
 #include "apps/data/data_manager.cpp"
 #include "apps/feature/activity_timer.cpp"
+#include "apps/feature/activity_input.cpp"
 #include "apps/feature/Create_Habbits.cpp"
 #include "apps/feature/Delete_Habbits.cpp"
 #include "apps/feature/activity_delete.cpp"
