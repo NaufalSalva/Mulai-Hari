@@ -41,5 +41,5 @@ int main() {
                 cout << "\n[Sistem] Pilihan tidak valid! Silakan coba lagi." << endl;
                 system("pause");
         }
-}
+    }
 }

@@ -24,6 +24,7 @@ bool prosesLogin() {
 
     cout << "\n[Sistem] Login berhasil." << endl;
     system("pause");
+    HabitNode* root = bangunTreeDariHobi(userDitemukan.username, daftarHobi);
 
     tampilkanDashboard(
         userDitemukan.username,
