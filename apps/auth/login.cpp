@@ -1,35 +1,35 @@
 bool prosesLogin() {
-	system("cls");
+    system("cls");
 
-	string username;
-	string password;
-	User userDitemukan;
-	string daftarHobi;
+    string username;
+    string password;
+    User userDitemukan;
+    string daftarHobi;
 
-	cout << "==================================================" << endl;
-	cout << "                    LOGIN USER                    " << endl;
-	cout << "==================================================" << endl;
+    cout << "==================================================" << endl;
+    cout << "                    LOGIN USER                    " << endl;
+    cout << "==================================================" << endl;
 
-	cout << "Masukkan Username : ";
-	cin >> username;
+    cout << "Masukkan Username : ";
+    cin >> username;
 
-	cout << "Masukkan Password : ";
-	cin >> password;
+    cout << "Masukkan Password : ";
+    cin >> password;
 
-	if (!cariUserDiFile(username, password, userDitemukan, daftarHobi)) {
-		cout << "\n[Sistem] Login gagal. Username atau password salah, atau data belum terdaftar." << endl;
-		system("pause");
-		return false;
-	}
+    if (!cariUserDiFile(username, password, userDitemukan, daftarHobi)) {
+        cout << "\n[Sistem] Login gagal. Username atau password salah, atau data belum terdaftar." << endl;
+        system("pause");
+        return false;
+    }
 
-	cout << "\n[Sistem] Login berhasil." << endl;
-	cout << "Username : " << userDitemukan.username << endl;
-	cout << "Email    : " << userDitemukan.email << endl;
-	cout << "Root     : " << userDitemukan.username << endl;
-	cout << "Hobi     :" << endl;
-	tampilkanDaftarHobi(daftarHobi);
-	system("pause");
+    cout << "\n[Sistem] Login berhasil." << endl;
+    system("pause");
 
-	return true;
+    tampilkanDashboard(
+        userDitemukan.username,
+        userDitemukan.email,
+        daftarHobi
+    );
+
+    return true;
 }
-
