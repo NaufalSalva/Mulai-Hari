@@ -80,8 +80,8 @@ FormMenulis inputFormMenulis() {
     cout << "2. Cerita\n";
     cout << "3. Esai\n";
     cout << "4. Puisi\n";
-    cout << "6. Jurnal\n";
-    cout << "7. Lainnya\n";
+    cout << "5. Jurnal\n";
+    cout << "6. Lainnya\n";
     cout << "Pilih jenis (1-6): ";
     cin >> pilihan;
     cin.ignore();
