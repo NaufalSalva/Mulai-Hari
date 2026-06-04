@@ -3,6 +3,7 @@
 
 using namespace std;
 
+void inputAktivitas();
 
 void tampilkanDashboard(string username, string email, string daftarHobi)
 {
@@ -62,10 +63,7 @@ void tampilkanDashboard(string username, string email, string daftarHobi)
 
             case 2:
                 system("cls");
-                cout << "==================================================" << endl;
-                cout << "                CATAT AKTIVITAS                   " << endl;
-                cout << "==================================================" << endl;
-                cout << "Fitur catat aktivitas belum dibuat." << endl;
+                inputAktivitas();
                 system("pause");
                 break;
 

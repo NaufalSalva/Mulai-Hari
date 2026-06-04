@@ -20,9 +20,6 @@ bool validasiNamaProjek(const string& nama) {
     return true;
 }
 
-bool validasiDurasi(int durasi_menit) {
-    return (durasi_menit > 0 && durasi_menit <= 480);
-}
 
 void tampilkanJenisCoding() {
     cout << "\n=========== PILIH JENIS CODING ==============\n";
@@ -35,25 +32,6 @@ void tampilkanJenisCoding() {
     cout << "7. Machine Learning\n";
     cout << "8. Lainnya\n";
     cout << "========================================== \n";
-}
-
-void tampilkanMenuWaktu() {
-    cout << "\n========== PILIH WAKTU AKTIVITAS ==========\n";
-    cout << "1. Pagi    (05:00 - 11:00)                   \n";
-    cout << "2. Siang   (11:00 - 15:00)                   \n";
-    cout << "3. Sore    (15:00 - 18:00)                   \n";
-    cout << "4. Malam   (18:00 - 23:00)                   \n";
-    cout << "========================================== \n";
-}
-
-string pilihanWaktu(int pilihan) {
-    switch(pilihan) {
-        case 1: return "Pagi";
-        case 2: return "Siang";
-        case 3: return "Sore";
-        case 4: return "Malam";
-        default: return "Siang";
-    }
 }
 
 

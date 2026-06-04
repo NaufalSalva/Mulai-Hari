@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 #include "forms/form_coding.cpp"
 #include "forms/form_gaming.cpp"
