@@ -5,6 +5,9 @@
 #include <conio.h>
 #include <iomanip>
 #include <cstdlib>
+#include "focus_session.cpp"
+#include "session_result.cpp"
+#include "session_history.cpp"
 
 using namespace std;
 
@@ -97,33 +100,49 @@ public:
     }
 };
 
-sesiFokus getSesiKilat() {
-    return {"Sesi Kilat", 15, "Fokus cepat untuk tugas ringan"};
-}
-
-sesiFokus getSesiStandar() {
-    return {"Sesi Standar", 25, "Fokus standar + istirahat otomatis tercatat"};
-}
-
-sesiFokus getSesiDeepWork() {
-    return {"Sesi Deep Work", 50, "Fokus mendalam untuk tugas berat"};
-}
-
-namaAktivitas runTimerSession(sesiFokus sesi) {
-    FokusHariTimer timer(sesi.durasi);
-    namaAktivitas record;
-    record.nama_sesi = sesi.nama;
-    record.selesai = false;
+void fokusHariSessionBaru(HabitNode* root) {
+    // Step 1: Setup Sesi (Pilih Habit, Sub-Habit, Template Timer)
+    SesiFokusAktif sesi;
+    if (!setupSesiFokus(root, sesi)) {
+        cout << "Setup sesi gagal!\n";
+        return;
+    }
     
-    auto waktu_mulai = chrono::system_clock::now();
+    // Step 2: Tampilkan ringkasan sebelum memulai
+    tampilkanRingkasanSesi(sesi);
     
-    cout << "\n Sesi dimulai! Tekan ENTER untuk melanjutkan...\n";
-    cin.ignore();
+    // Step 3: Jalankan timer
+    FokusHariTimer timer(sesi.durasi_menit);
     
     while (!timer.isStopped()) {
         int sisa_detik = timer.getTotalDetik() - timer.getDetikBerlalu();
-        timer.displayTimer(sisa_detik, sesi.nama);
         
+        // Tampilkan timer
+        string waktu_str;
+        timer.formatWaktu(sisa_detik, waktu_str);
+        
+        system("cls");
+        cout << "\n";
+        cout << "==================================================\n";
+        cout << "              SESI FOKUS SEDANG BERJALAN          \n";
+        cout << "==================================================\n\n";
+        
+        cout << "Habit         : " << sesi.habit << "\n";
+        cout << "Sub-Habit     : " << sesi.sub_habit << "\n";
+        cout << "Template      : " << sesi.template_timer << "\n";
+        cout << "\nWaktu Tersisa : " << waktu_str << "\n";
+        
+        cout << "==================================================\n\n";
+        
+        if (timer.isPaused()) {
+            cout << "STATUS: TERJEDA (Tekan [P] untuk lanjut)\n";
+        } else {
+            cout << "STATUS: BERJALAN\n";
+        }
+        cout << "Kontrol: [P] Pause/Resume | [S] Stop\n";
+        cout << "==================================================\n";
+        
+        // Input keyboard
         if (_kbhit()) {
             int key = _getch();
             if (key == 'P' || key == 'p') {
@@ -132,10 +151,12 @@ namaAktivitas runTimerSession(sesiFokus sesi) {
                 timer.setStopped(true);
                 system("cls");
                 cout << "\nSesi dihentikan lebih awal!\n";
+                this_thread::sleep_for(chrono::seconds(1));
                 break;
             }
         }
         
+        // Update timer
         if (!timer.isPaused()) {
             this_thread::sleep_for(chrono::milliseconds(1000));
             timer.incrementDetik();
@@ -143,134 +164,43 @@ namaAktivitas runTimerSession(sesiFokus sesi) {
             this_thread::sleep_for(chrono::milliseconds(100));
         }
         
+        // Selesai?
         if (timer.isComplete()) {
+            system("cls");
+            cout << "\n";
+            cout << "==================================================\n";
+            cout << "         WAKTU HABIS! SESI SELESAI SEMPURNA!      \n";
+            cout << "==================================================\n";
+            this_thread::sleep_for(chrono::seconds(2));
             break;
         }
     }
     
-    auto waktu_akhir = chrono::system_clock::now();
-    auto durasi = chrono::duration_cast<chrono::seconds>(waktu_akhir - waktu_mulai);
+    // Step 4: Buat hasil sesi
+    int waktu_aktual = timer.getDetikBerlalu();
+    bool selesai_sempurna = timer.isComplete();
     
-    record.waktu_aktual = static_cast<int>(durasi.count());
+    HasilSesi hasil = buatHasilSesi(
+        sesi.habit,
+        sesi.sub_habit,
+        sesi.template_timer,
+        sesi.durasi_menit,
+        waktu_aktual,
+        selesai_sempurna
+    );
     
-
-    system("cls");
-    cout << "\n";
-    cout << "==================================================\n";
-    cout << "                   SESI SELESAI!                  \n";
-    cout << "==================================================\n\n";
+    // Step 5: Tampilkan hasil
+    tampilkanHasilSesi(hasil);
     
-    cout << "Sesi               : " << sesi.nama << "\n";
-    cout << "Durasi Direncanakan: " << sesi.durasi << " menit\n";
-    cout << "Waktu Aktual       : " << (record.waktu_aktual / 60) << " menit " 
-         << (record.waktu_aktual % 60) << " detik\n";
-    cout << "Deskripsi          : " << sesi.deskripsi << "\n";
-    
-    if (sesi.nama == "Sesi Standar") {
-        cout << "\n==================================================\n";
-        cout << "        PENCATATAN ISTIRAHAT OTOMATIS          \n";
-        cout << "==================================================\n";
-        cout << "Tips: Istirahat 5 menit untuk sesi 25 menit\n";
-        cout << "Istirahat telah dicatat secara otomatis\n";
-    }
-    
-    cout << "\nTekan ENTER untuk kembali...";
-    cin.ignore();
-    
-    return record;
-}
-
-void tampilkanMenuTemplate() {
-    system("cls");
-    cout << "\n";
-    cout << "==================================================\n";
-    cout << "           FOKUS HARI - PILIH MODE SESI           \n";
-    cout << "==================================================\n\n";
-    
-    cout << "Pilih template sesi Anda:\n\n";
-    
-    cout << "1. SESI KILAT\n";
-    cout << "   Durasi: 15 menit\n\n";
-
-    cout << "2. SESI STANDAR \n";
-    cout << "   Durasi: 25 menit\n\n";
-
-    cout << "3. SESI DEEP WORK\n";
-    cout << "   Durasi: 50 menit\n\n";
-
-    cout << "0. Kembali ke Menu Utama\n";
-    cout << "==================================================\n";
-}
-
-void fokusHariSession() {
-    int pilihan;
-    sesiFokus sesi_dipilih;
-    bool valid = false;
-    
-    while (!valid) {
-        tampilkanMenuTemplate();
-        cout << "Masukkan pilihan Anda: ";
-        cin >> pilihan;
-        
-        switch (pilihan) {
-            case 1:
-                sesi_dipilih = getSesiKilat();
-                valid = true;
-                break;
-            case 2:
-                sesi_dipilih = getSesiStandar();
-                valid = true;
-                break;
-            case 3:
-                sesi_dipilih = getSesiDeepWork();
-                valid = true;
-                break;
-            case 0:
-                return;
-            default:
-                cout << "\nPilihan tidak valid! Coba lagi.\n";
-                cin.ignore();
-                cin.ignore();
-        }
-    }
-    
-    system("cls");
-    cout << "\n";
-    cout << "==================================================\n";
-    cout << "              KONFIRMASI SESI FOKUS               \n";
-    cout << "==================================================\n\n";
-    
-    cout << "Sesi Terpilih  : " << sesi_dipilih.nama << "\n";
-    cout << "Durasi         : " << sesi_dipilih.durasi << " menit\n";
-    cout << "Deskripsi: " << sesi_dipilih.deskripsi << "\n\n";
-    
-    cout << "TIPS PENTING:\n";
-    cout << " - Tutup semua distraksi sebelum memulai\n";
-    cout << " - Matikan notifikasi ponsel dan komputer\n";
-    cout << " - Fokus penuh pada satu tugas saja\n";
-    cout << " - Gunakan [P] untuk pause, [S] untuk stop\n\n";
-    
-    cout << "Lanjutkan sesi? (y/n): ";
-    char konfirmasi;
-    cin >> konfirmasi;
-    
-    if (konfirmasi == 'y' || konfirmasi == 'Y') {
-        namaAktivitas hasil = runTimerSession(sesi_dipilih);
-        cout << "\nData sesi telah disimpan!\n";
-    } else {
-        cout << "\nSesi dibatalkan.\n";
-    }
+    // Step 6: Menu setelah sesi
+    menuSetelahSesi(hasil);
 }
 
 void tampilkanStatistikFokus() {
-    system("cls");
-    cout << "\n";
-    cout << "==================================================\n";
-    cout << "            STATISTIK FOKUS HARI ANDA             \n";
-    cout << "==================================================\n\n";
+    menuRiwayatSesi();
 }
 
-void menuFokusHari() {
+void menuFokusHari(HabitNode* root) {
     int pilihan;
     bool kembali = false;
     
@@ -284,7 +214,7 @@ void menuFokusHari() {
         cout << "==================================================\n\n";
         
         cout << "Pilih opsi:\n\n";
-        cout << "1. Mulai Sesi Fokus\n";
+        cout << "1. Mulai Sesi Fokus (Pilih Habit & Sub-Habit)\n";
         cout << "2. Lihat Statistik Fokus Hari\n";
         cout << "0. Kembali ke Menu Utama\n";
         cout << "\n==================================================\n";
@@ -294,7 +224,7 @@ void menuFokusHari() {
         
         switch(pilihan) {
             case 1:
-                fokusHariSession();
+                fokusHariSessionBaru(root);
                 break;
             case 2:
                 tampilkanStatistikFokus();

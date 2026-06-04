@@ -105,19 +105,15 @@ void Register(){
       cout << "====================================================" << endl;
     cout << "1. Olahraga" << endl;
     cout << "2. Membaca" << endl;
-    cout << "3. Masak" << endl;
-    cout << "4. Mendaki" << endl;
+    cout << "3. Memasak" << endl;
+    cout << "4. Traveling" << endl;
     cout << "5. Coding" << endl;
     cout << "6. Musik" << endl;
     cout << "7. Menulis" << endl;
-    cout << "8. Traveling" << endl;
-    cout << "9. Seni" << endl;
-    cout << "10. Gaming" << endl;
-    cout << "11. Menonton" << endl;
-    cout << "12. Belajar" << endl;
-    cout << "13. Fotografi" << endl;
-    cout << "14. Berkebun" << endl;
-    cout << "15. Mengajar" << endl;
+    cout << "8. Gaming" << endl;
+    cout << "9. Belajar" << endl;
+    cout << "10. Menonton" << endl;
+
     cout << "0. Selesai" << endl;
     cout << "====================================================" << endl;
     
@@ -133,8 +129,8 @@ void Register(){
                         continue;
                 }
 
-                    if (!validasiPilihan(pilihanHobi, 0, 15)) {
-                        cout << "Pilihan tidak valid! Silakan pilih nomor antara 0-15." << endl;
+                    if (!validasiPilihan(pilihanHobi, 0, 10)) {
+                        cout << "Pilihan tidak valid! Silakan pilih nomor antara 0-10." << endl;
                         continue;
                     }
 
@@ -157,18 +153,18 @@ void Register(){
                 hubungkanHobiTree(userTree, "Membaca");
                 break;
             case 3:
-                    if (hobiSudahDipilih(userTree, "Masak")) {
+                    if (hobiSudahDipilih(userTree, "Memasak")) {
                         cout << "Hobi sudah dipilih sebelumnya." << endl;
                         continue;
                     }
-                hubungkanHobiTree(userTree, "Masak");
+                hubungkanHobiTree(userTree, "Memasak");
                 break;
             case 4:
-                    if (hobiSudahDipilih(userTree, "Mendaki")) {
+                    if (hobiSudahDipilih(userTree, "Traveling")) {
                         cout << "Hobi sudah dipilih sebelumnya." << endl;
                         continue;
                     }
-                hubungkanHobiTree(userTree, "Mendaki");
+                hubungkanHobiTree(userTree, "Traveling");
                 break;
             case 5:
                     if (hobiSudahDipilih(userTree, "Coding")) {
@@ -192,60 +188,25 @@ void Register(){
                 hubungkanHobiTree(userTree, "Menulis");
                 break;
             case 8:
-                    if (hobiSudahDipilih(userTree, "Traveling")) {
-                        cout << "Hobi sudah dipilih sebelumnya." << endl;
-                        continue;
-                    }
-                hubungkanHobiTree(userTree, "Traveling");
-                break;
-            case 9:
-                    if (hobiSudahDipilih(userTree, "Seni")) {
-                        cout << "Hobi sudah dipilih sebelumnya." << endl;
-                        continue;
-                    }
-                hubungkanHobiTree(userTree, "Seni");
-                break;
-            case 10:
                     if (hobiSudahDipilih(userTree, "Gaming")) {
                         cout << "Hobi sudah dipilih sebelumnya." << endl;
                         continue;
                     }
                 hubungkanHobiTree(userTree, "Gaming");
                 break;
-            case 11:
+            case 9:
+                    if (hobiSudahDipilih(userTree, "Belajar")) {
+                        cout << "Hobi sudah dipilih sebelumnya." << endl;
+                        continue;
+                    }
+                hubungkanHobiTree(userTree, "Belajar");
+                break;
+            case 10:
                     if (hobiSudahDipilih(userTree, "Menonton")) {
                         cout << "Hobi sudah dipilih sebelumnya." << endl;
                         continue;
                     }
                 hubungkanHobiTree(userTree, "Menonton");
-                break;
-            case 12:
-                    if (hobiSudahDipilih(userTree, "Belajar")) {
-                        cout << "Hobi sudah dipilih sebelumnya." << endl;
-                        continue;
-                    }
-                hubungkanHobiTree(userTree, "Belajar");   
-                break;
-            case 13:
-                    if (hobiSudahDipilih(userTree, "Fotografi")) {
-                        cout << "Hobi sudah dipilih sebelumnya." << endl;
-                        continue;
-                    }
-                hubungkanHobiTree(userTree, "Fotografi");
-                break;
-            case 14:
-                    if (hobiSudahDipilih(userTree, "Berkebun")) {
-                        cout << "Hobi sudah dipilih sebelumnya." << endl;
-                        continue;
-                    }
-                hubungkanHobiTree(userTree, "Berkebun");
-                break;
-            case 15:
-                    if (hobiSudahDipilih(userTree, "Mengajar")) {
-                        cout << "Hobi sudah dipilih sebelumnya." << endl;
-                        continue;
-                    }
-                hubungkanHobiTree(userTree, "Mengajar");
                 break;
             default:
                 cout << "Pilihan tidak valid! Silakan pilih nomor antara 1-15 atau 0 untuk selesai." << endl;
