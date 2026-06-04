@@ -228,7 +228,7 @@ void fokusHariSession() {
             case 0:
                 return;
             default:
-                cout << "\n❌ Pilihan tidak valid! Coba lagi.\n";
+                cout << "\nPilihan tidak valid! Coba lagi.\n";
                 cin.ignore();
                 cin.ignore();
         }
