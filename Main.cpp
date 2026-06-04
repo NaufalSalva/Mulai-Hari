@@ -11,8 +11,10 @@
 #include "apps/view/dashboard.cpp"
 #include "apps/auth/login.cpp"
 #include "apps/auth/register.cpp"
-
+#include "apps/view/splash.cpp"
 int main() {
+    tampilkanSplash();
+    tampilkanOnboarding();
    bool berjalan = true;
     int pilihan;
   while (berjalan) {
