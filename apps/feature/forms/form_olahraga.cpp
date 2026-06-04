@@ -115,7 +115,7 @@ FormOlahraga inputFormOlahraga() {
     system("cls");
     cout << "\n";
     cout << "=============================================\n";
-    cout << "              FORM AKTIVITAS OLAHRAGA        \n";
+    cout << "            FORM AKTIVITAS OLAHRAGA          \n";
     cout << "=============================================\n\n";
     
 

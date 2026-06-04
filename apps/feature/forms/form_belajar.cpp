@@ -115,7 +115,7 @@ void tampilkanPreviewBelajar(const FormBelajar& form) {
     
     cout << "Detail Aktivitas:\n";
     cout << "=============================================\n";
-    cout << "Judul Pelajaran : " << form.judulPelajaran << "\n";
+    cout << "Judul Pelajaran: " << form.judulPelajaran << "\n";
     cout << "Durasi         : " << form.durasiMenit << " menit\n";
     cout << "Waktu Aktivitas: " << form.waktuAktivitas << "\n";
 
