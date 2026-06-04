@@ -32,15 +32,14 @@ string ambilHobiDariTree(HabitNode* root) {
     return hasil;
 }
 
-// Simpan 1 user ke file dengan format:
-// username|email|password|rootName|hobi1,hobi2
+// id|username|email|password|rootName|hobi1,hobi2
 bool simpanUserKeFile(const User& userBaru, HabitNode* userTree) {
     ofstream file(FILE_USER, ios::app);
     if (!file.is_open()) {
         return false;
     }
 
-    // Jika tree kosong, tetap simpan user tanpa hobi
+
     string rootName = userBaru.username;
     string daftarHobi = "-";
 
@@ -49,7 +48,8 @@ bool simpanUserKeFile(const User& userBaru, HabitNode* userTree) {
         daftarHobi = ambilHobiDariTree(userTree);
     }
 
-    file << userBaru.username << "|"
+    file << userBaru.id << "|"
+         << userBaru.username << "|"
          << userBaru.email << "|"
          << userBaru.password << "|"
          << rootName << "|"
@@ -71,13 +71,16 @@ bool usernameSudahTerdaftar(const string& username) {
         }
 
         stringstream aliran(baris);
-        string namaTersimpan;
+        string idTersimpan, namaTersimpan;
 
-        if (getline(aliran, namaTersimpan, '|') && namaTersimpan == username) {
-            return true;
+       if (getline(aliran, idTersimpan, '|') && getline(aliran, namaTersimpan, '|')) {
+            if (namaTersimpan == username) {
+                file.close();
+                return true;
+            }
         }
     }
-
+    file.close();
     return false;
 }
 
@@ -92,35 +95,30 @@ bool cariUserDiFile(const string& username, const string& password, User& userDi
         if (baris.empty()) {
             continue;
         }
-
-        // Pecah kolom berdasarkan '|'
         stringstream aliran(baris);
+        string idTersimpan;
         string usernameTersimpan;
         string emailTersimpan;
         string passwordTersimpan;
         string rootNameTersimpan;
         string hobiTersimpan;
 
-        // Kalau format baris tidak lengkap, lewati
-        if (!getline(aliran, usernameTersimpan, '|')) {
-            continue;
-        }
-        if (!getline(aliran, emailTersimpan, '|')) {
-            continue;
-        }
-        if (!getline(aliran, passwordTersimpan, '|')) {
-            continue;
-        }
-        if (!getline(aliran, rootNameTersimpan, '|')) {
-            continue;
-        }
 
-        // Data lama mungkin belum punya kolom hobi
+  
+       if (!getline(aliran, idTersimpan, '|')) continue;
+        if (!getline(aliran, usernameTersimpan, '|')) continue;
+        if (!getline(aliran, emailTersimpan, '|')) continue;
+        if (!getline(aliran, passwordTersimpan, '|')) continue;
+        if (!getline(aliran, rootNameTersimpan, '|')) continue;
+
+   
         if (!getline(aliran, hobiTersimpan, '|')) {
             hobiTersimpan = "-";
         }
 
         if (usernameTersimpan == username && passwordTersimpan == password) {
+            stringstream konverter(idTersimpan);
+            konverter >> userDitemukan.id;
             userDitemukan.username = usernameTersimpan;
             userDitemukan.email = emailTersimpan;
             userDitemukan.password = passwordTersimpan;
