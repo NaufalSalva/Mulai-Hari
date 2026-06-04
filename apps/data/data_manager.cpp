@@ -135,7 +135,7 @@ bool cariUserDiFile(const string& username, const string& password, User& userDi
 // Tampilkan hobi ke layar
 void tampilkanDaftarHobi(const string& daftarHobi) {
     if (daftarHobi.empty() || daftarHobi == "-") {
-        cout << "- Belum ada hobi tersimpan" << endl;
+            cout << "- Belum ada hobi tersimpan" << endl;
         return;
     }
 
