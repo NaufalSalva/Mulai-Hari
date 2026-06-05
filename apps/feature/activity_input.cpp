@@ -72,7 +72,7 @@ void inputAktivitas(HabitNode* root)
 
             aktivitas.hobi = "Coding";
             aktivitas.detail = standardisasiDetailCoding(form);
-            aktivitas.durai = form.durasiCoding;
+            aktivitas.durasi = form.durasiCoding;
         }
 
      else if (pilihanNode->nama == "Gaming")
@@ -81,7 +81,7 @@ void inputAktivitas(HabitNode* root)
 
             aktivitas.hobi = "Gaming";
             aktivitas.detail = standardisasiDetailGaming(form);
-            aktivitas.durai = form.durasiMenit;
+            aktivitas.durasi = form.durasiMenit;
         }
 
      else if (pilihanNode->nama == "Membaca")
@@ -90,7 +90,7 @@ void inputAktivitas(HabitNode* root)
 
             aktivitas.hobi = "Membaca";
             aktivitas.detail = standardisasiDetailMembaca(form);
-            aktivitas.durai = form.durasiMenit;
+            aktivitas.durasi = form.durasiMenit;
         }
 
       else if (pilihanNode->nama == "Olahraga")
@@ -99,7 +99,7 @@ void inputAktivitas(HabitNode* root)
 
             aktivitas.hobi = "Olahraga";
             aktivitas.detail = standardisasiDetailOlahraga(form);
-            aktivitas.durai = form.durasiMenit;
+            aktivitas.durasi = form.durasiMenit;
         }
 
       else if (pilihanNode->nama == "Menulis")
@@ -108,7 +108,7 @@ void inputAktivitas(HabitNode* root)
 
             aktivitas.hobi = "Menulis";
             aktivitas.detail = standardisasiDetailMenulis(form);
-            aktivitas.durai = form.durasiMenit;
+            aktivitas.durasi = form.durasiMenit;
         }
 
         else if (pilihanNode->nama == "Musik")
@@ -117,7 +117,7 @@ void inputAktivitas(HabitNode* root)
 
             aktivitas.hobi = "Musik";
             aktivitas.detail = standardisasiDetailMusik(form);
-            aktivitas.durai = form.durasiMenit;
+            aktivitas.durasi = form.durasiMenit;
         }
         else if (pilihanNode->nama == "Memasak")
         {
@@ -125,7 +125,7 @@ void inputAktivitas(HabitNode* root)
 
             aktivitas.hobi = "Memasak";
             aktivitas.detail = standardisasiDetailMemasak(form);
-            aktivitas.durai = form.durasiMemasak;
+            aktivitas.durasi = form.durasiMemasak;
         }
         else if (pilihanNode->nama == "Menonton")
         {
@@ -133,7 +133,7 @@ void inputAktivitas(HabitNode* root)
 
             aktivitas.hobi = "Menonton";
             aktivitas.detail = standardisasiDetailMenonton(form);
-            aktivitas.durai = form.durasiMenit;
+            aktivitas.durasi = form.durasiMenit;
         }
         else if (pilihanNode->nama == "Traveling")
         {
@@ -141,7 +141,7 @@ void inputAktivitas(HabitNode* root)
 
             aktivitas.hobi = "Traveling";
             aktivitas.detail = standardisasiDetailTraveling(form);
-            aktivitas.durai = form.durasiPerjalanan;
+            aktivitas.durasi = form.durasiPerjalanan;
         }
         else if (pilihanNode->nama == "Belajar")
         {
@@ -149,7 +149,7 @@ void inputAktivitas(HabitNode* root)
 
             aktivitas.hobi = "Belajar";
             aktivitas.detail = standardisasiDetailBelajar(form);
-            aktivitas.durai = form.durasiMenit;
+            aktivitas.durasi = form.durasiMenit;
         }
         else
         {

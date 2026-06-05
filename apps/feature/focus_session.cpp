@@ -69,6 +69,7 @@ void tampilkanTemplateTimer() {
 }
 
 
+
 HabitNode* getHabitByNomor(HabitNode* root, int nomor) {
     if (root == nullptr) return nullptr;
     
@@ -103,12 +104,18 @@ HabitNode* getSubHabitByNomor(HabitNode* parentHabit, int nomor) {
 
 bool setupSesiFokus(HabitNode* root, SesiFokusAktif& sesi) {
     int pilihanHabit, pilihanSubHabit, pilihanTimer;
-    
+
   
     system("cls");
     tampilkanDaftarHabits(root);
     cout << "\nMasukkan nomor habit yang dipilih: ";
-    cin >> pilihanHabit;
+    if (!(cin >> pilihanHabit)) {
+        cin.clear();
+        cin.ignore(1000, '\n');
+        cout << "Input harus berupa angka nomor hobi!\n";
+        system("pause");
+        return false;
+    }
     
     HabitNode* habitTerpilih = getHabitByNomor(root, pilihanHabit);
     if (habitTerpilih == nullptr) {
@@ -118,10 +125,34 @@ bool setupSesiFokus(HabitNode* root, SesiFokusAktif& sesi) {
     
     sesi.habit = habitTerpilih->nama;
     
+      if (habitTerpilih->child == nullptr) {
+        system("cls");
+        cout << "\n=========================================================\n";
+        cout << " PERINGATAN: SUB-HABIT BELUM DITAMBAHKAN!\n";
+        cout << "=========================================================\n";
+        cout << " Anda belum menambahkan sub-habit untuk habit: [" << habitTerpilih->nama << "]\n";
+        cout << " Silakan tambahkan sub-habit terlebih dahulu melalui\n";
+        cout << " Menu Dashboard (Nomor 5).\n";
+        cout << "=========================================================\n\n";
+        
+ 
+        cout << "Press any key to continue . . . ";
+        cin.ignore();
+        cin.get(); 
+        
+        return false; 
+    }
+
     system("cls");
     tampilkanSubHabits(habitTerpilih);
     cout << "Masukkan nomor sub-habit yang dipilih: ";
-    cin >> pilihanSubHabit;
+    if (!(cin >> pilihanSubHabit)) {
+        cin.clear();
+        cin.ignore(1000, '\n');
+        cout << "Input harus berupa angka nomor sub-habit!\n";
+        system("pause");
+        return false;
+    }
     
     HabitNode* subHabitTerpilih = getSubHabitByNomor(habitTerpilih, pilihanSubHabit);
     if (subHabitTerpilih == nullptr) {
@@ -131,7 +162,9 @@ bool setupSesiFokus(HabitNode* root, SesiFokusAktif& sesi) {
     
     sesi.sub_habit = subHabitTerpilih->nama;
     
-    // Tampilkan template timer
+  
+
+
     system("cls");
     tampilkanTemplateTimer();
     cout << "Masukkan pilihan template timer (1-5): ";
@@ -164,14 +197,14 @@ bool setupSesiFokus(HabitNode* root, SesiFokusAktif& sesi) {
             cout << "Pilihan tidak valid!\n";
             return false;
     }
-    
+
     sesi.waktu_berlalu = 0;
     sesi.sedang_berjalan = true;
     
     return true;
 }
 
-// Fungsi untuk menampilkan ringkasan sesi sebelum dimulai
+
 void tampilkanRingkasanSesi(const SesiFokusAktif& sesi) {
     cout << "\n\n";
     cout << "==================================================\n";
