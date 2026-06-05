@@ -9,10 +9,12 @@
 #include "apps/feature/Create_Habbits.cpp"
 #include "apps/feature/Delete_Habbits.cpp"
 #include "apps/feature/activity_delete.cpp"
+#include "apps/feature/activity_history.cpp"
 #include "apps/view/dashboard.cpp"
 #include "apps/auth/login.cpp"
 #include "apps/auth/register.cpp"
 #include "apps/view/splash.cpp"
+
 int main() {
     tampilkanSplash();
     tampilkanOnboarding();

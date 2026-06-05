@@ -74,13 +74,7 @@ FormMemasak inputFormMemasak() {
     }
     cin.ignore();
 
-    cout << "\n============= 3. WAKTU AKTIVITAS =============\n";
-    tampilkanMenuWaktu();
-    pilihan = validasiInputAngka(1, 4, "Pilih waktu (1-4): ");
-    form.waktuAktivitas = pilihanWaktu(pilihan);
-    
-
-    cout << "\n============= 4. CATATAN TAMBAHAN =============\n";
+    cout << "\n============= 5. CATATAN TAMBAHAN =============\n";
     cout << "Catatan: ";
     getline(cin, form.catatan);
     
