@@ -10,6 +10,7 @@
 #include "apps/feature/Delete_Habbits.cpp"
 #include "apps/feature/activity_delete.cpp"
 #include "apps/feature/activity_history.cpp"
+#include "apps/feature/task_manager.cpp"
 #include "apps/view/dashboard.cpp"
 #include "apps/auth/login.cpp"
 #include "apps/auth/register.cpp"
