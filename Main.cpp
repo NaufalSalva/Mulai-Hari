@@ -32,8 +32,7 @@ int main() {
         cout << "2. Buat Akun Baru (Register)" << endl;
         cout << "3. Keluar Aplikasi" << endl;
         cout << "--------------------------------------------------" << endl;
-        cout << "Pilih Menu (1-3): ";
-        cin >> pilihan;
+        pilihan = validasiInputAngka(1, 3, "Pilih Menu (1-3): ");
 
         switch (pilihan) {
             case 1:
@@ -48,7 +47,7 @@ int main() {
                 break;
             default:
                 cout << "\n[Sistem] Pilihan tidak valid! Silakan coba lagi." << endl;
-                system("pause");
+                return 0;
         }
     }
 }
