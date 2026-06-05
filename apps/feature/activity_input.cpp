@@ -47,113 +47,114 @@ void inputAktivitas(HabitNode* root)
 
     cout << "\nPilihan: ";
     cin >> pilihan;
-    cin.ignore();
 
-    switch (pilihan)
-    {
-        case 1:
+    if (pilihan < 1 || pilihan >= nomor) {
+        cout << "\nPilihan tidak valid!\n";
+        return;
+    }
+    
+    HabitNode* pilihanNode = root->child;
+
+    for (int i = 1; i < pilihan && pilihanNode != nullptr; i++) {
+        pilihanNode = pilihanNode->sibling;
+    }
+
+    if(pilihanNode == nullptr) {
+        cout << "\nPilihan tidak valid!\n";
+        return;
+    }
+
+
+    if (pilihanNode->nama == "Coding")
         {
             FormCoding form = inputFormCoding();
 
             aktivitas.hobi = "Coding";
             aktivitas.detail = standardisasiDetailCoding(form);
             aktivitas.durai = form.durasiCoding;
-            break;
         }
 
-        case 2:
+     else if (pilihanNode->nama == "Gaming")
         {
             FormGaming form = inputFormGaming();
 
             aktivitas.hobi = "Gaming";
             aktivitas.detail = standardisasiDetailGaming(form);
             aktivitas.durai = form.durasiMenit;
-            break;
         }
 
-        case 3:
+     else if (pilihanNode->nama == "Membaca")
         {
             FormMembaca form = inputFormMembaca();
 
             aktivitas.hobi = "Membaca";
             aktivitas.detail = standardisasiDetailMembaca(form);
             aktivitas.durai = form.durasiMenit;
-            break;
         }
 
-        case 4:
+      else if (pilihanNode->nama == "Olahraga")
         {
             FormOlahraga form = inputFormOlahraga();
 
             aktivitas.hobi = "Olahraga";
             aktivitas.detail = standardisasiDetailOlahraga(form);
             aktivitas.durai = form.durasiMenit;
-            break;
         }
 
-        case 5:
+      else if (pilihanNode->nama == "Menulis")
         {
             FormMenulis form = inputFormMenulis();
 
             aktivitas.hobi = "Menulis";
             aktivitas.detail = standardisasiDetailMenulis(form);
-            aktivitas.durai = 0; // atau ambil dari form jika ada
-            break;
+            aktivitas.durai = form.durasiMenit;
         }
 
-        case 6:
+        else if (pilihanNode->nama == "Musik")
         {
             FormMusik form = inputFormMusik();
 
             aktivitas.hobi = "Musik";
             aktivitas.detail = standardisasiDetailMusik(form);
             aktivitas.durai = form.durasiMenit;
-            break;
         }
-        case 7:
+        else if (pilihanNode->nama == "Memasak")
         {
             FormMemasak form = inputFormMemasak();
 
             aktivitas.hobi = "Memasak";
             aktivitas.detail = standardisasiDetailMemasak(form);
             aktivitas.durai = form.durasiMemasak;
-            break;
         }
-        case 8:
+        else if (pilihanNode->nama == "Menonton")
         {
             FormMenonton form = inputFormMenonton();
 
             aktivitas.hobi = "Menonton";
             aktivitas.detail = standardisasiDetailMenonton(form);
             aktivitas.durai = form.durasiMenit;
-            break;
         }
-        case 9:
+        else if (pilihanNode->nama == "Traveling")
         {
             FormTraveling form = inputFormTraveling();
 
             aktivitas.hobi = "Traveling";
             aktivitas.detail = standardisasiDetailTraveling(form);
             aktivitas.durai = form.durasiPerjalanan;
-            break;
         }
-        case 10:
+        else if (pilihanNode->nama == "Belajar")
         {
             FormBelajar form = inputFormBelajar();
 
             aktivitas.hobi = "Belajar";
             aktivitas.detail = standardisasiDetailBelajar(form);
             aktivitas.durai = form.durasiMenit;
-            break;
         }
-
-
-        default:
+        else
         {
             cout << "\nPilihan tidak valid!\n";
             return;
         }
-    }
 
     cout << "\nMood Saat Ini:\n";
     cout << "1. Senang\n";
