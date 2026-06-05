@@ -1,11 +1,77 @@
 #include <iostream>
 #include <string>
+#include <sstream>
 
 using namespace std;
 
 void inputAktivitas();
 
 TaskList userTasks = {nullptr};
+
+int hitungTotalTugasDinamis(const TaskList& list) {
+    int total = 0;
+    TaskNode* current = list.head; 
+    while (current != nullptr) {
+        total++;
+        current = current->next;
+    }
+    return total;
+}
+
+int hitungTugasSelesaiDinamis(const TaskList& list) {
+    int selesai = 0;
+    TaskNode* current = list.head;
+    while (current != nullptr) {
+        if (current->isSelesai) {
+            selesai++;
+        }
+        current = current->next;
+    }
+    return selesai;
+}
+
+
+int hitungSesiFokusDinamis(const AktivitasStack& stack) {
+    int totalFokus = 0;
+    StackNode* temp = stack.top;
+    
+    while (temp != nullptr) {
+        if (temp->data.hobi.find("[TIMERS]") != string::npos) {
+            totalFokus++;
+        }
+        temp = temp->next;
+    }
+    return totalFokus;
+}
+
+int hitungTotalLogAktivitas(const AktivitasStack& stack) {
+    int total = 0;
+    StackNode* temp = stack.top;
+    while (temp != nullptr) {
+        total++;
+        temp = temp->next;
+    }
+    return total;
+}
+
+
+string dapatkanMoodDashboard(const LogAktivitasNode& data) {
+
+    if (data.hobi.find("[TIMERS]") != string::npos) {
+        stringstream ss(data.mood);
+        string tanggal, jamMulai, jamSelesai, durasiRencana, statusPenyelesaian;
+        
+        getline(ss, tanggal, '|');
+        getline(ss, jamMulai, '|');
+        getline(ss, jamSelesai, '|');
+        getline(ss, durasiRencana, '|');
+        getline(ss, statusPenyelesaian, '|');
+        
+        return "Sesi " + statusPenyelesaian;
+    }
+
+    return data.mood;
+}
 
 void tampilkanDashboard(string username, string email, string daftarHobi)
 {
@@ -33,10 +99,17 @@ void tampilkanDashboard(string username, string email, string daftarHobi)
         cout << "--------------------------------------------------" << endl;
         cout << "RINGKASAN HARI INI" << endl;
         cout << "--------------------------------------------------" << endl;
-        cout << "   Total Aktivitas : 0" << endl;
-        cout << "   Kondisi Mental  : Belum ada" << endl;
-
+        cout << "   Total Log Aktivitas : " << hitungTotalLogAktivitas(historyStack) << endl;
+        cout << "   Total Sesi Fokus    : " << hitungSesiFokusDinamis(historyStack) << " Sesi Selesai" << endl;
+        
+        cout << "   Aktivitas Terakhir  : " << (historyStack.top ? historyStack.top->data.hobi + " - " + historyStack.top->data.detail : "Belum ada") << endl;
+        
+     
+        cout << "   Mood / Info Terakhir: " << (historyStack.top ? dapatkanMoodDashboard(historyStack.top->data) : "Belum ada") << endl;
+        
+        cout << "   Total Tugas         : " << hitungTotalTugasDinamis(userTasks) << " | Tugas Selesai: " << hitungTugasSelesaiDinamis(userTasks) << endl;
         cout << "--------------------------------------------------" << endl;
+        
         cout << "MENU DASHBOARD" << endl;
         cout << "--------------------------------------" << endl;
         cout << "1. Lihat Hobi" << endl;
@@ -48,6 +121,7 @@ void tampilkanDashboard(string username, string email, string daftarHobi)
         cout << "7. Hapus Aktivitas Terakhir\n";
         cout << "8. Riwayat Aktivitas\n";
         cout << "9. Manajemen Tugas\n";
+        cout << "10. Rekomendasi \n";
         cout << "0. Logout" << endl;
         cout << "======================================" << endl;
         cout << "Pilih menu: ";
@@ -71,7 +145,7 @@ void tampilkanDashboard(string username, string email, string daftarHobi)
                 break;
 
             case 3:
-                menuFokusHari(root);
+                menuFokusHari(root, historyStack);
                 break;
 
             case 4: cetakTreeLCRS(root); system("pause"); break;
@@ -80,6 +154,7 @@ void tampilkanDashboard(string username, string email, string daftarHobi)
             case 7: hapusAktivitasTerakhir(historyStack); system("pause"); break;
             case 8: tampilkanRiwayatAktivitas(historyStack); system("pause"); break;
             case 9: menuTaskManager(userTasks, username, root); system("pause"); break;
+            case 10: menuRekomendasiHobi(root); system("pause"); break;
             case 0:
                 berjalan = false;
                 cout << "\n[Sistem] Logout berhasil." << endl;
@@ -90,6 +165,5 @@ void tampilkanDashboard(string username, string email, string daftarHobi)
                 cout << "\n[Sistem] Pilihan tidak valid! Silakan coba lagi." << endl;
                 system("pause");
         }
-
     }
 }

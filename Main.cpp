@@ -11,6 +11,7 @@
 #include "apps/feature/activity_delete.cpp"
 #include "apps/feature/activity_history.cpp"
 #include "apps/feature/task_manager.cpp"
+#include "apps/feature/rekomendasi.cpp"
 #include "apps/view/dashboard.cpp"
 #include "apps/auth/login.cpp"
 #include "apps/auth/register.cpp"
@@ -22,7 +23,7 @@ int main() {
    bool berjalan = true;
     int pilihan;
   while (berjalan) {
-        system("cls"); // Bersihkan layar terminal tiap kembali ke menu utama
+        system("cls"); 
         cout << "==================================================" << endl;
         cout << "                APLIKASI MULAIHARI                " << endl;
         cout << "              Langkah Awal Disiplin           " << endl;

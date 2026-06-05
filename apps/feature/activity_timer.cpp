@@ -192,14 +192,11 @@ void fokusHariSessionBaru(HabitNode* root) {
     tampilkanHasilSesi(hasil);
     
 
-    menuSetelahSesi(hasil);
+    menuSetelahSesi(hasil, historyStack);
 }
 
-void tampilkanStatistikFokus() {
-    menuRiwayatSesi();
-}
 
-void menuFokusHari(HabitNode* root) {
+void menuFokusHari(HabitNode* root, AktivitasStack& stack) {
     int pilihan;
     bool kembali = false;
     
@@ -214,7 +211,7 @@ void menuFokusHari(HabitNode* root) {
         
         cout << "Pilih opsi:\n\n";
         cout << "1. Mulai Sesi Fokus (Pilih Habit & Sub-Habit)\n";
-        cout << "2. Lihat Statistik Fokus Hari\n";
+        cout << "2. Lihat Riwayat Sesi\n";
         cout << "0. Kembali ke Menu Utama\n";
         cout << "\n==================================================\n";
         cout << "Masukkan pilihan Anda: ";
@@ -226,7 +223,7 @@ void menuFokusHari(HabitNode* root) {
                 fokusHariSessionBaru(root);
                 break;
             case 2:
-                tampilkanStatistikFokus();
+                menuRiwayatSesi(stack);
                 break;
             case 0:
                 kembali = true;

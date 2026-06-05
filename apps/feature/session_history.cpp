@@ -1,179 +1,79 @@
+#pragma once
 #include <iostream>
-#include <fstream>
-#include <sstream>
-#include <vector>
 #include <string>
+#include <sstream>
+#include <iomanip>
 
 using namespace std;
 
-const string FILE_SESSION_HISTORY = "apps/data/session_results.txt";
-
-struct RecordSesi {
-    string tanggal;
-    string jam_mulai;
-    string habit;
-    string sub_habit;
-    string template_timer;
-    int durasi_rencana;
-    int waktu_aktual;
-    string status_penyelesaian;
-    string catatan;
-};
-
-vector<RecordSesi> bacaSemuaHasilSesi() {
-    vector<RecordSesi> data;
-    ifstream file(FILE_SESSION_HISTORY);
-
-    if (!file.is_open()) {
-        return data;
-    }
-
-    string line;
-    while (getline(file, line)) {
-        if (line.empty()) {
-            continue;
-        }
-
-        stringstream ss(line);
-        string token;
-        RecordSesi item;
-
-        getline(ss, item.tanggal, '|');
-        getline(ss, item.jam_mulai, '|');
-        getline(ss, item.habit, '|');
-        getline(ss, item.sub_habit, '|');
-        getline(ss, item.template_timer, '|');
-
-        getline(ss, token, '|');
-        item.durasi_rencana = token.empty() ? 0 : stoi(token);
-
-        getline(ss, token, '|');
-        item.waktu_aktual = token.empty() ? 0 : stoi(token);
-
-        getline(ss, item.status_penyelesaian, '|');
-        getline(ss, item.catatan);
-
-        data.push_back(item);
-    }
-
-    return data;
-}
-
-void tampilkanSatuRecordSesi(const RecordSesi& item, int nomor) {
-    int menit = item.waktu_aktual / 60;
-    int detik = item.waktu_aktual % 60;
-
-    cout << "--------------------------------------------------\n";
-    cout << nomor << ". " << item.tanggal << " " << item.jam_mulai << "\n";
-    cout << "   Habit      : " << item.habit << "\n";
-    cout << "   Sub-Habit  : " << item.sub_habit << "\n";
-    cout << "   Template   : " << item.template_timer << "\n";
-    cout << "   Durasi     : " << item.durasi_rencana << " menit\n";
-    cout << "   Aktual     : " << menit << " menit " << detik << " detik\n";
-    cout << "   Status     : " << item.status_penyelesaian << "\n";
-
-    if (!item.catatan.empty()) {
-        cout << "   Catatan    : " << item.catatan << "\n";
-    }
-}
-
-void tampilkanRiwayatSesi() {
+void menuRiwayatSesi(const AktivitasStack& stack) {
     system("cls");
-    cout << "==================================================\n";
-    cout << "                RIWAYAT SESI FOKUS                \n";
-    cout << "==================================================\n\n";
+    cout << "========================================================================================\n";
+    cout << "                              RIWAYAT AKTIVITAS FOKUS ANDA                              \n";
+    cout << "========================================================================================\n";
 
-    vector<RecordSesi> data = bacaSemuaHasilSesi();
-
-    if (data.empty()) {
-        cout << "Belum ada riwayat sesi.\n";
-        cout << "\nTekan ENTER untuk kembali...";
-        cin.ignore();
+    if (stack.top == nullptr) {
+        cout << "\n                     [Sistem] Riwayat sesi fokus kosong.\n";
+        cout << "========================================================================================\n";
+        system("pause"); 
         return;
     }
-
+   
+    StackNode* temp = stack.top;
     int nomor = 1;
-    for (int i = static_cast<int>(data.size()) - 1; i >= 0; --i) {
-        tampilkanSatuRecordSesi(data[i], nomor);
-        nomor++;
-    }
+    bool adaDataTimer = false; 
 
-    cout << "--------------------------------------------------\n";
-    cout << "\nTekan ENTER untuk kembali...";
-    cin.ignore();
-}
 
-void tampilkanStatistikSesi() {
-    system("cls");
-    cout << "==================================================\n";
-    cout << "                STATISTIK SESI FOKUS              \n";
-    cout << "==================================================\n\n";
+    cout << left << setw(5) << "No" 
+         << left << setw(15) << "| Tanggal"
+         << left << setw(23) << "| Waktu Aktivitas (WIB)"
+         << left << setw(15) << "| Habit" 
+         << left << setw(15) << "| Sub-Habit" 
+         << "| Status\n";
+    cout << "----------------------------------------------------------------------------------------\n";
 
-    vector<RecordSesi> data = bacaSemuaHasilSesi();
+    while (temp != nullptr) {
+        if (temp->data.hobi.find("[TIMERS]") != string::npos) {
+            adaDataTimer = true; 
+            
+            string habitBersih = temp->data.hobi.substr(9); 
 
-    if (data.empty()) {
-        cout << "Belum ada data statistik sesi.\n";
-        cout << "\nTekan ENTER untuk kembali...";
-        cin.ignore();
-        return;
-    }
+          
+            stringstream ss(temp->data.mood);
+            string tanggal, jamMulai, jamSelesai, durasiRencana, statusPenyelesaian;
+            
+            getline(ss, tanggal, '|');
+            getline(ss, jamMulai, '|');
+            getline(ss, jamSelesai, '|'); 
+            getline(ss, durasiRencana, '|');
+            getline(ss, statusPenyelesaian, '|');
 
-    int total = static_cast<int>(data.size());
-    int selesai = 0;
-    int totalDetik = 0;
+         
+            int menitRiil = temp->data.durasi / 60;
+            int detikRiil = temp->data.durasi % 60;
+            
+            string stringDurasiJam = jamMulai + " - " + jamSelesai + " (" + to_string(menitRiil) + "m " + to_string(detikRiil) + "s)";
 
-    for (int i = 0; i < total; i++) {
-        totalDetik += data[i].waktu_aktual;
-        if (data[i].status_penyelesaian == "Selesai") {
-            selesai++;
+            cout << left << setw(5) << nomor 
+                 << "| " << left << setw(13) << tanggal
+                 << "| " << left << setw(21) << stringDurasiJam
+                 << "| " << left << setw(13) << habitBersih 
+                 << "| " << left << setw(13) << temp->data.detail 
+                 << "| " << statusPenyelesaian << "\n";
+            
+            nomor++;
         }
+        temp = temp->next; 
     }
 
-    int gagal = total - selesai;
-    int persenSukses = (total > 0) ? (selesai * 100 / total) : 0;
-
-    cout << "Total sesi             : " << total << "\n";
-    cout << "Sesi selesai           : " << selesai << "\n";
-    cout << "Sesi berhenti di tengah: " << gagal << "\n";
-    cout << "Persentase sukses      : " << persenSukses << "%\n";
-    cout << "Total waktu fokus      : " << totalDetik / 60 << " menit\n";
-
-    cout << "\nTekan ENTER untuk kembali...";
-    cin.ignore();
-}
-
-void menuRiwayatSesi() {
-    bool selesai = false;
-
-    while (!selesai) {
+    if (!adaDataTimer) {
         system("cls");
-        cout << "==================================================\n";
-        cout << "              RIWAYAT & STATISTIK FOKUS           \n";
-        cout << "==================================================\n\n";
-        cout << "1. Lihat Riwayat Sesi\n";
-        cout << "2. Lihat Statistik Sesi\n";
-        cout << "0. Kembali\n";
-        cout << "\nMasukkan pilihan Anda: ";
-
-        int pilihan;
-        cin >> pilihan;
-        cin.ignore();
-
-        switch (pilihan) {
-            case 1:
-                tampilkanRiwayatSesi();
-                break;
-            case 2:
-                tampilkanStatistikSesi();
-                break;
-            case 0:
-                selesai = true;
-                break;
-            default:
-                cout << "Pilihan tidak valid.\n";
-                cout << "Tekan ENTER untuk lanjut...";
-                cin.ignore();
-                break;
-        }
+        cout << "========================================================================================\n";
+        cout << "                              RIWAYAT AKTIVITAS FOKUS ANDA                              \n";
+        cout << "========================================================================================\n";
+        cout << "\n                     [Sistem] Riwayat sesi fokus kosong.\n";
     }
+
+    cout << "========================================================================================\n";
+    system("pause"); 
 }
