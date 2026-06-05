@@ -1,6 +1,2 @@
-dada|daa@gmai.com|Quent1|dada|Musik,Menulis,Traveling,Seni,Gaming
-dadan|dadan@gmail.com|dadan1|dadan|Olahraga,Membaca,Masak,Mendaki,Coding
-dadan2|dadan@gmail.com|dadan2|dadan2|Olahraga,Membaca,Masak,Mendaki,Coding
-bye|bye@gmail.com|qwer123|bye|Olahraga,Membaca,Masak,Mendaki,Coding
-nana|nana@gmail.com|nanan1|nana|Olahraga,Membaca,Masak,Mendaki,Coding
-asd|asd@gmail.cpm|asd321|asd|Olahraga,Membaca,Masak,Mendaki,Coding
+1|nana|nanan@gmail.,com|nanan123|nana|Olahraga,Membaca,Memasak,Traveling,Coding
+2|asd|asd@gmail.com|asd1234|asd|Olahraga,Membaca,Traveling,Coding,Menonton

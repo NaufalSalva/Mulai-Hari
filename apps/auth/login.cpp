@@ -1,6 +1,6 @@
 bool prosesLogin() {
     system("cls");
-
+    int id;
     string username;
     string password;
     User userDitemukan;

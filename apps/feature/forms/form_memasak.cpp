@@ -52,8 +52,7 @@ FormMemasak inputFormMemasak() {
     
     cout << "\n============= 2. JENIS MASAKAN =============\n";
     tampilkanJenisMasakan();
-    cout << "Pilih jenis (1-3): ";
-    cin >> pilihan;
+    pilihan = validasiInputAngka(1, 4, "Pilih jenis masakan (1-4): ");
     switch(pilihan) {
         case 1: form.jenisMasakan = "Masakan Tradisional"; break;
         case 2: form.jenisMasakan = "Masakan Luar Negeri"; break;
@@ -61,31 +60,24 @@ FormMemasak inputFormMemasak() {
         case 4: form.jenisMasakan = "Lainnya"; break;
         default: form.jenisMasakan = "Masakan Tradisional";
     }
-    cin.ignore();
 
     cout << "\n============= 3. WAKTU AKTIVITAS =============\n";
     tampilkanMenuWaktu();
-    cout << "Pilih waktu (1-4): ";
-    cin >> pilihan;
+    pilihan = validasiInputAngka(1, 4, "Pilih waktu (1-4): ");
     form.waktuAktivitas = pilihanWaktu(pilihan);
-    cin.ignore();
 
     cout << "============= 4. DURASI MEMASAK =============\n";
-    cout << "Masukkan durasi (dalam menit): ";
-    cin >> form.durasiMemasak;
+    form.durasiMemasak = validasiInputAngka(1, 480, "Masukkan durasi (dalam menit): ");
     
     while (!validasiDurasi(form.durasiMemasak)) {
-        cout << "Durasi harus 1-480 menit! Masukkan lagi: ";
-        cin >> form.durasiMemasak;
+        form.durasiMemasak = validasiInputAngka(1, 480, "Masukkan durasi (dalam menit): ");
     }
     cin.ignore();
 
     cout << "\n============= 3. WAKTU AKTIVITAS =============\n";
     tampilkanMenuWaktu();
-    cout << "Pilih waktu (1-4): ";
-    cin >> pilihan;
+    pilihan = validasiInputAngka(1, 4, "Pilih waktu (1-4): ");
     form.waktuAktivitas = pilihanWaktu(pilihan);
-    cin.ignore();
     
 
     cout << "\n============= 4. CATATAN TAMBAHAN =============\n";

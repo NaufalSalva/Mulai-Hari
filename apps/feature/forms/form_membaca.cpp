@@ -44,14 +44,11 @@ FormMembaca inputFormMembaca() {
     
 
     cout << "============= 2. DURASI MEMBACA =============\n";
-    cout << "Masukkan durasi (dalam menit): ";
-    cin >> form.durasiMenit;
+    form.durasiMenit = validasiInputAngka(1, 480, "Masukkan durasi (dalam menit): ");
     
     while (!validasiDurasi(form.durasiMenit)) {
-        cout << "Durasi harus 1-480 menit! Masukkan lagi: ";
-        cin >> form.durasiMenit;
+        form.durasiMenit = validasiInputAngka(1, 480, "Masukkan durasi (dalam menit): ");
     }
-    cin.ignore();
 
     cout << "\n============= 3. GENRE BACAAN =============\n";
     cout << "1. Action\n";
@@ -61,9 +58,7 @@ FormMembaca inputFormMembaca() {
     cout << "5. Horror\n";
     cout << "6. Thriller\n";
     cout << "7. Lainnya\n";
-    cout << "Pilih genre (1-7): ";
-    cin >> pilihan;
-    cin.ignore();
+    pilihan = validasiInputAngka(1, 7, "Pilih genre (1-7): ");
 
     switch (pilihan) {
         case 1: form.genreBacaan = "Action"; break;
@@ -83,9 +78,7 @@ FormMembaca inputFormMembaca() {
     cout << "4. Website\n";
     cout << "5. PDF\n";
     cout << "6. Lainnya\n";
-    cout << "Pilih media (1-6): ";
-    cin >> pilihan;
-    cin.ignore();
+    pilihan = validasiInputAngka(1, 6, "Pilih media (1-6): ");
 
     switch (pilihan) {
         case 1: form.mediaBacaan = "Buku Fisik"; break;
@@ -104,9 +97,7 @@ FormMembaca inputFormMembaca() {
     cout << "4. Mencari Inspirasi\n";
     cout << "5. Menambah Wawasan\n";
     cout << "6. Lainnya\n";
-    cout << "Pilih tujuan (1-6): ";
-    cin >> pilihan;
-    cin.ignore();
+    pilihan = validasiInputAngka(1, 6, "Pilih tujuan (1-6): ");
 
     switch (pilihan) {
         case 1: form.tujuanMembaca = "Belajar"; break;
@@ -120,10 +111,8 @@ FormMembaca inputFormMembaca() {
 
     cout << "\n============= 6. WAKTU AKTIVITAS =============\n";
     tampilkanMenuWaktu();
-    cout << "Pilih waktu (1-4): ";
-    cin >> pilihan;
+    pilihan = validasiInputAngka(1, 4, "Pilih waktu (1-4): ");
     form.waktuAktivitas = pilihanWaktu(pilihan);
-    cin.ignore();
 
     cout << "\n============= 7. CATATAN TAMBAHAN =============\n";
     cout << "Catatan: ";

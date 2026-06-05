@@ -1,3 +1,37 @@
+int generateUserIdBaru() {
+    ifstream file("apps/data/user.txt");
+    if (!file.is_open()) {
+        return 1; 
+    }
+
+    string baris;
+    int idTerbesar = 0;
+
+ 
+    while (getline(file, baris)) {
+        if (baris.empty()) continue;
+        
+        stringstream ss(baris);
+        string idStr;
+        
+
+        if (getline(ss, idStr, ',')) {
+        
+            stringstream konverter(idStr);
+            int idSekarang = 0;
+            
+        
+            if (konverter >> idSekarang) {
+                if (idSekarang > idTerbesar) {
+                    idTerbesar = idSekarang;
+                }
+            }
+        }
+    }
+    file.close();
+    return idTerbesar + 1; 
+}
+
 void hubungkanHobiTree(HabitNode* root, string namaHobi) {
     HabitNode* newNode = new HabitNode;
     newNode->nama = namaHobi;
@@ -49,6 +83,7 @@ void tampilkanHobiDipilih(HabitNode* root) {
 void Register(){
     system("cls");
     User userBaru;
+    userBaru.id = generateUserIdBaru();
     cout << "==================================================" << endl;
     cout << "               REGISTRASI USER BARU               " << endl;
     cout << "==================================================" << endl;

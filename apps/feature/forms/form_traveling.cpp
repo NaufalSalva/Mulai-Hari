@@ -54,8 +54,8 @@ FormTraveling inputFormTraveling() {
     
     cout << "\n============= 2. JENIS TEMPAT =============\n";
     tampilkanJenisTempat();
-    cout << "Pilih jenis (1-6): ";
-    cin >> pilihan;
+    pilihan = validasiInputAngka(1, 6, "Pilih jenis tempat (1-6): ");
+    
     switch(pilihan) {
         case 1: form.jenisTempat = "Wisata Alam"; break;
         case 2: form.jenisTempat = "Wisata Budaya dan Sejarah"; break;
@@ -70,26 +70,21 @@ FormTraveling inputFormTraveling() {
     cout << "\n============= 3. WAKTU AKTIVITAS =============\n";
     tampilkanMenuWaktu();
     cout << "Pilih waktu (1-4): ";
-    cin >> pilihan;
+    pilihan = validasiInputAngka(1, 4, "Pilih waktu (1-4): ");
     form.waktuAktivitas = pilihanWaktu(pilihan);
-    cin.ignore();
 
     cout << "============= 4. DURASI PERJALANAN =============\n";
     cout << "Masukkan durasi (dalam menit): ";
-    cin >> form.durasiPerjalanan;
-    
+    form.durasiPerjalanan = validasiInputAngka(1, 480, "Masukkan durasi (dalam menit): ");
+
     while (!validasiDurasi(form.durasiPerjalanan)) {
-        cout << "Durasi harus 1-480 menit! Masukkan lagi: ";
-        cin >> form.durasiPerjalanan;
+        form.durasiPerjalanan = validasiInputAngka(1, 480, "Durasi harus 1-480 menit! Masukkan lagi: ");
     }
-    cin.ignore();
 
     cout << "\n============= 3. WAKTU AKTIVITAS =============\n";
     tampilkanMenuWaktu();
-    cout << "Pilih waktu (1-4): ";
-    cin >> pilihan;
+    pilihan = validasiInputAngka(1, 4, "Pilih waktu (1-4): ");
     form.waktuAktivitas = pilihanWaktu(pilihan);
-    cin.ignore();
     
 
     cout << "\n============= 4. CATATAN TAMBAHAN =============\n";
