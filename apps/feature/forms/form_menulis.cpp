@@ -1,3 +1,4 @@
+#include "../../utils/validation.cpp"
 #include <iostream>
 #include <string>
 #include <iomanip>
@@ -33,7 +34,7 @@ FormMenulis inputFormMenulis() {
 
     cout << "============= 1. JUDUL MENULIS =============\n";
     cout << "Judul Tulisan: ";
-    getline(cin, form.judulTulisan);
+    getline(cin >> ws, form.judulTulisan);
     
     while (!validasiJudulTulisan(form.judulTulisan)) {
         cout << "Judul tulisan tidak valid! Masukkan lagi: ";
@@ -42,14 +43,11 @@ FormMenulis inputFormMenulis() {
     
 
     cout << "============= 2. DURASI MENULIS =============\n";
-    cout << "Masukkan durasi (dalam menit): ";
-    cin >> form.durasiMenit;
+    form.durasiMenit = validasiInputAngka(1, 480, "Masukkan durasi (dalam menit): ");
     
     while (!validasiDurasi(form.durasiMenit)) {
-        cout << "Durasi harus 1-480 menit! Masukkan lagi: ";
-        cin >> form.durasiMenit;
+        form.durasiMenit = validasiInputAngka(1, 480, "Masukkan durasi (dalam menit): ");
     }
-    cin.ignore();
 
     cout << "\n============= 3. Jenis Tulisan =============\n";
     cout << "1. Artikel\n";
@@ -58,9 +56,8 @@ FormMenulis inputFormMenulis() {
     cout << "4. Puisi\n";
     cout << "5. Jurnal\n";
     cout << "6. Lainnya\n";
-    cout << "Pilih jenis (1-6): ";
-    cin >> pilihan;
-    cin.ignore();
+    pilihan = validasiInputAngka(1, 6, "Pilih jenis tulisan (1-6): ");
+
     switch(pilihan) {
         case 1: form.jenisTulisan = "Artikel"; break;
         case 2: form.jenisTulisan = "Cerita"; break;
@@ -73,10 +70,8 @@ FormMenulis inputFormMenulis() {
 
     cout << "\n============= 4. WAKTU AKTIVITAS =============\n";
     tampilkanMenuWaktu();
-    cout << "Pilih waktu (1-4): ";
-    cin >> pilihan;
+    pilihan = validasiInputAngka(1, 4, "Pilih waktu (1-4): ");
     form.waktuAktivitas = pilihanWaktu(pilihan);
-    cin.ignore();
 
     cout << "\n============= 5. CATATAN TAMBAHAN =============\n";
     cout << "Catatan: ";

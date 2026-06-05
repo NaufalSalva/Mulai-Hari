@@ -1,3 +1,4 @@
+#include "../../utils/validation.cpp"
 #include <iostream>
 #include <string>
 #include <iomanip>
@@ -98,7 +99,8 @@ FormOlahraga inputFormOlahraga() {
     cout << "============= 1. JENIS OLAHRAGA =============\n";
     cout << "Lari, Gym, Yoga, Renang, Bersepeda\n";
     cout << "Masukkan jenis: ";
-    getline(cin, form.jenisOlahraga);
+
+    getline(cin >> ws, form.jenisOlahraga);
     
     while (!validasiJenisOlahraga(form.jenisOlahraga)) {
         cout << "Jenis olahraga tidak valid! Masukkan lagi: ";
@@ -107,33 +109,27 @@ FormOlahraga inputFormOlahraga() {
     
 
     cout << "============= 2. DURASI OLAHRAGA =============\n";
-    cout << "Masukkan durasi (dalam menit): ";
-    cin >> form.durasiMenit;
+    form.durasiMenit = validasiInputAngka(1, 480, "Masukkan durasi (dalam menit): ");
     
     while (!validasiDurasi(form.durasiMenit)) {
-        cout << "Durasi harus 1-480 menit! Masukkan lagi: ";
-        cin >> form.durasiMenit;
+        form.durasiMenit = validasiInputAngka(1, 480, "Durasi harus 1-480 menit! Masukkan lagi: ");
     }
-    cin.ignore();
     
 
     cout << "============= 3. INTENSITAS OLAHRAGA =============\n";
     tampilkanMenuIntensitas();
     cout << "Pilih intensitas (1-3): ";
-    cin >> pilihan;
+    pilihan = validasiInputAngka(1, 3, "Pilih intensitas (1-3): ");
     form.intensitas = pilihanIntensitas(pilihan);
-    cin.ignore();
     
 
     cout << "\n============= 4. JARAK OLAHRAGA =============\n";
-    cout << "Masukkan jarak (dalam km): ";
-    cin >> form.jarakKm;
+    form.jarakKm = validasiInputAngka(0, 100, "Masukkan jarak (dalam km): ");
     
     while (!validasiJarak(form.jarakKm)) {
         cout << "Jarak harus 0-100 km! Masukkan lagi: ";
-        cin >> form.jarakKm;
+        form.jarakKm = validasiInputAngka(0, 100, "Masukkan jarak (dalam km): ");
     }
-    cin.ignore();
     
 
     form.kaloriTerbakar = estimasiKalori(form.jenisOlahraga, form.durasiMenit, form.intensitas);
@@ -149,10 +145,8 @@ FormOlahraga inputFormOlahraga() {
 
     cout << "\n============= 7. WAKTU AKTIVITAS =============\n";
     tampilkanMenuWaktu();
-    cout << "Pilih waktu (1-4): ";
-    cin >> pilihan;
+    pilihan = validasiInputAngka(1, 4, "Pilih waktu (1-4): ");
     form.waktuAktivitas = pilihanWaktu(pilihan);
-    cin.ignore();
     
 
     cout << "\n============= 8. CATATAN TAMBAHAN =============\n";

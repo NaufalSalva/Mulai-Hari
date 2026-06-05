@@ -19,7 +19,7 @@ string padCenter(string teks) {
 void tampilkanSplash() {
     system("cls");
     cout << "\n\n\n"; 
-    cout << padCenter("M U L I A H A R I") << endl;
+    cout << padCenter("M U L A I  H A R I") << endl;
     cout << padCenter("Kuasai Waktumu, Bangun Kebiasaanmu") << endl;
     cout << "\n\n"; 
     cout << padCenter("Loading System...") << endl;

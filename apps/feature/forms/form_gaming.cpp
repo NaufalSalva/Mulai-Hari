@@ -1,3 +1,4 @@
+#include "../../utils/validation.cpp"
 #include <iostream>
 #include <string>
 #include <iomanip>
@@ -34,7 +35,7 @@ FormGaming inputFormGaming() {
 
     cout << "============= 1. NAMA GAME =============\n";
     cout << "Nama Game: ";
-    getline(cin, form.namaGame);
+    getline(cin >> ws, form.namaGame);
     
     while (!validasiNamaGame(form.namaGame)) {
         cout << "Nama game tidak valid! Masukkan lagi: ";
@@ -42,15 +43,13 @@ FormGaming inputFormGaming() {
     }
     
 
-    cout << "============= 2. DURASI MENULIS =============\n";
-    cout << "Masukkan durasi (dalam menit): ";
-    cin >> form.durasiMenit;
+    cout << "============= 2. DURASI BERMAIN =============\n";
+    form.durasiMenit = validasiInputAngka(1, 480, "Masukkan durasi (dalam menit): ");
     
     while (!validasiDurasi(form.durasiMenit)) {
         cout << "Durasi harus 1-480 menit! Masukkan lagi: ";
-        cin >> form.durasiMenit;
+        form.durasiMenit = validasiInputAngka(1, 480, "Masukkan durasi (dalam menit): ");
     }
-    cin.ignore();
 
     cout << "\n============= 3. GENRE GAME =============\n";
     cout << "1. Action\n";
@@ -62,9 +61,7 @@ FormGaming inputFormGaming() {
     cout << "7. Sports\n";
     cout << "8. Racing\n";
     cout << "9. Lainnya\n";
-    cout << "Pilih genre (1-9): ";
-    cin >> pilihan;
-    cin.ignore();
+    pilihan = validasiInputAngka(1, 9, "Pilih genre (1-9): ");
 
     switch (pilihan) {
         case 1: form.genreGame = "Action"; break;
@@ -85,9 +82,7 @@ FormGaming inputFormGaming() {
     cout << "4. Latihan\n";
     cout << "5. Mencari Achievement\n";
     cout << "6. Lainnya\n";
-    cout << "Pilih genre (1-6): ";
-    cin >> pilihan;
-    cin.ignore();
+    pilihan = validasiInputAngka(1, 6, "Pilih tujuan main (1-6): ");
 
     switch (pilihan) {
         case 1: form.tujuanMain = "Hiburan"; break;
@@ -100,10 +95,8 @@ FormGaming inputFormGaming() {
 
     cout << "\n============= 5. WAKTU AKTIVITAS =============\n";
     tampilkanMenuWaktu();
-    cout << "Pilih waktu (1-4): ";
-    cin >> pilihan;
+    pilihan = validasiInputAngka(1, 4, "Pilih waktu (1-4): ");
     form.waktuAktivitas = pilihanWaktu(pilihan);
-    cin.ignore();
 
     cout << "\n============= 6. CATATAN TAMBAHAN =============\n";
     cout << "Catatan: ";

@@ -1,3 +1,4 @@
+#include "../../utils/validation.cpp"
 #include <iostream>
 #include <string>
 #include <iomanip>
@@ -22,7 +23,6 @@ bool validasiJudulTontonan(const string& judul) {
 }
 
 
-
 FormMenonton inputFormMenonton() {
     FormMenonton form;
     int pilihan;
@@ -36,7 +36,7 @@ FormMenonton inputFormMenonton() {
 
     cout << "============= 1. JUDUL TONTONAN =============\n";
     cout << "Judul Tontonan: ";
-    getline(cin, form.judulTontonan);
+    getline(cin >> ws, form.judulTontonan);
     
     while (!validasiJudulTontonan(form.judulTontonan)) {
         cout << "Judul tontonan tidak valid! Masukkan lagi: ";
@@ -45,14 +45,11 @@ FormMenonton inputFormMenonton() {
     
 
     cout << "============= 2. DURASI MENONTON =============\n";
-    cout << "Masukkan durasi (dalam menit): ";
-    cin >> form.durasiMenit;
-    
+    form.durasiMenit = validasiInputAngka(1, 480, "Masukkan durasi (dalam menit): ");
+
     while (!validasiDurasi(form.durasiMenit)) {
-        cout << "Durasi harus 1-480 menit! Masukkan lagi: ";
-        cin >> form.durasiMenit;
+        form.durasiMenit = validasiInputAngka(1, 480, "Masukkan durasi (dalam menit): ");
     }
-    cin.ignore();
 
     cout << "\n============= 3. JENIS TONTONAN =============\n";
     cout << "1. Film\n";
@@ -62,9 +59,7 @@ FormMenonton inputFormMenonton() {
     cout << "5. Live Streaming\n";
     cout << "6. Podcast\n";
     cout << "7. Lainnya\n";
-    cout << "Pilih jenis (1-7): ";
-    cin >> pilihan;
-    cin.ignore();
+    pilihan = validasiInputAngka(1, 7, "Pilih jenis tontonan (1-7): ");
 
     switch (pilihan) {
         case 1: form.jenisTontonan = "Film"; break;
@@ -84,9 +79,7 @@ FormMenonton inputFormMenonton() {
     cout << "4. TV\n";
     cout << "5. Prime Video\n";
     cout << "6. Lainnya\n";
-    cout << "Pilih platform (1-6): ";
-    cin >> pilihan;
-    cin.ignore();
+    pilihan = validasiInputAngka(1, 6, "Pilih platform (1-6): ");
 
     switch (pilihan) {
         case 1: form.platformTontonan = "YouTube"; break;
@@ -105,9 +98,7 @@ FormMenonton inputFormMenonton() {
     cout << "4. Horror\n";
     cout << "5. Romance\n";
     cout << "6. Lainnya\n";
-    cout << "Pilih genre (1-6): ";
-    cin >> pilihan;
-    cin.ignore();
+    pilihan = validasiInputAngka(1, 6, "Pilih genre (1-6): ");
 
     switch (pilihan) {
         case 1: form.genreTontonan = "Action"; break;
@@ -121,10 +112,8 @@ FormMenonton inputFormMenonton() {
 
     cout << "\n============= 6. WAKTU AKTIVITAS =============\n";
     tampilkanMenuWaktu();
-    cout << "Pilih waktu (1-4): ";
-    cin >> pilihan;
+    pilihan = validasiInputAngka(1, 4, "Pilih waktu (1-4): ");
     form.waktuAktivitas = pilihanWaktu(pilihan);
-    cin.ignore();
 
     cout << "\n============= 7. CATATAN TAMBAHAN =============\n";
     cout << "Catatan: ";

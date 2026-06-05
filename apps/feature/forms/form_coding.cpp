@@ -1,3 +1,4 @@
+#include "../../utils/validation.cpp"
 #include <iostream>
 #include <string>
 #include <iomanip>
@@ -48,7 +49,7 @@ FormCoding inputFormCoding() {
 
     cout << "============= 1. NAMA PROJEK =============\n";
     cout << "Masukkan nama projek: ";
-    getline(cin, form.namaProjek);
+    getline(cin >> ws, form.namaProjek);
     
     while (!validasiNamaProjek(form.namaProjek)) {
         cout << "Nama projek tidak valid! Masukkan lagi: ";
@@ -57,8 +58,7 @@ FormCoding inputFormCoding() {
     
     cout << "\n============= 2. JENIS PEMROGRAMAN =============\n";
     tampilkanJenisCoding();
-    cout << "Pilih jenis (1-8): ";
-    cin >> pilihan;
+    pilihan = validasiInputAngka(1, 8, "Pilih jenis pemrograman (1-8): ");
     switch(pilihan) {
         case 1: form.jenisPemrograman = "Web Development"; break;
         case 2: form.jenisPemrograman = "Mobile Development"; break;
@@ -70,7 +70,6 @@ FormCoding inputFormCoding() {
         case 8: form.jenisPemrograman = "Lainnya"; break;
         default: form.jenisPemrograman = "Web Development";
     }
-    cin.ignore();
 
     cout << "\n============= 3. BAHASA PEMROGRAMAN =============\n";
     cout << "Masukkan bahasa pemrograman yang digunakan: ";
@@ -78,21 +77,17 @@ FormCoding inputFormCoding() {
 
 
     cout << "============= 4. DURASI CODING =============\n";
-    cout << "Masukkan durasi (dalam menit): ";
-    cin >> form.durasiCoding;
+    form.durasiCoding = validasiInputAngka(1, 480, "Masukkan durasi (dalam menit): ");
     
     while (!validasiDurasi(form.durasiCoding)) {
         cout << "Durasi harus 1-480 menit! Masukkan lagi: ";
-        cin >> form.durasiCoding;
+        form.durasiCoding = validasiInputAngka(1, 480, "Masukkan durasi (dalam menit): ");
     }
-    cin.ignore();
 
     cout << "\n============= 5. WAKTU AKTIVITAS =============\n";
     tampilkanMenuWaktu();
-    cout << "Pilih waktu (1-4): ";
-    cin >> pilihan;
+    pilihan = validasiInputAngka(1, 4, "Pilih waktu (1-4): ");
     form.waktuAktivitas = pilihanWaktu(pilihan);
-    cin.ignore();
     
 
     cout << "\n============= 6. CATATAN TAMBAHAN =============\n";

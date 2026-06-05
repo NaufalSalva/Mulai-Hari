@@ -1,4 +1,6 @@
+#pragma once
 #include <cctype>
+#include <iostream>
 #include <string>
 
 using namespace std;
@@ -84,5 +86,25 @@ string pilihanWaktu(int pilihan) {
         case 3: return "Sore";
         case 4: return "Malam";
         default: return "Siang";
+    }
+}
+
+int validasiInputAngka(int min, int max, string pesanPrompt) {
+    int angka;
+    cout << pesanPrompt;
+    
+    while (true) {
+        if (cin >> angka) {
+            if (angka >= min && angka <= max) {
+                cin.ignore(10000, '\n');
+                return angka;
+            } else {
+                cout << "Input harus antara " << min << " - " << max << ", silahkan ulangi: ";
+            }
+        } else {
+            cin.clear();
+            cin.ignore(10000, '\n');
+            cout << "Pilihan tidak valid, silahkan masukkan pilihan yang benar: ";
+        }
     }
 }

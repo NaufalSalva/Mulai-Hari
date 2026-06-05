@@ -1,2 +1,6 @@
 1|nana|nanan@gmail.,com|nanan123|nana|Olahraga,Membaca,Memasak,Traveling,Coding
 2|asd|asd@gmail.com|asd1234|asd|Olahraga,Membaca,Traveling,Coding,Menonton
+3|arda|arda@gmail.com|arda123|arda|Olahraga,Membaca,Memasak,Traveling,Menonton
+4|arfa|res@gmail.com|arfa123|arfa|Olahraga,Membaca,Memasak,Traveling,Gaming
+5|arga|arga@gmail.com|arga123|arga|Menonton,Musik,Gaming
+6|arta|arta@gmail.com|arta123|arta|Traveling,Coding,Membaca

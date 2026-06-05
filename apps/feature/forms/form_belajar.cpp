@@ -1,3 +1,4 @@
+#include "../../utils/validation.cpp"
 #include <iostream>
 #include <string>
 #include <iomanip>
@@ -31,7 +32,7 @@ FormBelajar inputFormBelajar() {
 
     cout << "============= 1. JUDUL BELAJAR =============\n";
     cout << "Masukkan hal yang dipelajari: ";
-    getline(cin, form.judulPelajaran);
+    getline(cin >> ws, form.judulPelajaran);
     
     while (!validasiJudulPelajaran(form.judulPelajaran)) {
         cout << "Judul pelajaran tidak valid! Masukkan lagi: ";
@@ -40,21 +41,16 @@ FormBelajar inputFormBelajar() {
     
 
     cout << "============= 2. DURASI BELAJAR =============\n";
-    cout << "Masukkan durasi (dalam menit): ";
-    cin >> form.durasiMenit;
+    form.durasiMenit = validasiInputAngka(1, 480, "Masukkan durasi (dalam menit): ");
     
     while (!validasiDurasi(form.durasiMenit)) {
-        cout << "Durasi harus 1-480 menit! Masukkan lagi: ";
-        cin >> form.durasiMenit;
+        form.durasiMenit = validasiInputAngka(1, 480, "Masukkan durasi (dalam menit): ");
     }
-    cin.ignore();
 
     cout << "\n============= 3. WAKTU AKTIVITAS =============\n";
     tampilkanMenuWaktu();
-    cout << "Pilih waktu (1-4): ";
-    cin >> pilihan;
+    pilihan = validasiInputAngka(1, 4, "Pilih waktu (1-4): ");
     form.waktuAktivitas = pilihanWaktu(pilihan);
-    cin.ignore();
     
 
     cout << "\n============= 4. CATATAN TAMBAHAN =============\n";
