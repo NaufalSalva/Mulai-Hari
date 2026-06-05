@@ -75,7 +75,7 @@ void tampilkanDashboard(string username, string email, string daftarHobi)
             case 5: tambahSubHabitUser(root); system("pause"); break;
             case 6: hapusSubHabit(root); system("pause"); break;
             case 7: hapusAktivitasTerakhir(historyStack); system("pause"); break;
-        
+            case 8: tampilkanRiwayatAktivitas(historyStack); system("pause"); break;
             case 0:
                 berjalan = false;
                 cout << "\n[Sistem] Logout berhasil." << endl;

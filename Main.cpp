@@ -13,6 +13,7 @@
 #include "apps/auth/login.cpp"
 #include "apps/auth/register.cpp"
 #include "apps/view/splash.cpp"
+#include "apps/feature/activity.cpp"
 int main() {
     tampilkanSplash();
     tampilkanOnboarding();

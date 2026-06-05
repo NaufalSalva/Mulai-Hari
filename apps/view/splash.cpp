@@ -49,7 +49,7 @@ void tampilkanOnboarding() {
     cout << "\n\n";
     cout << padCenter("[ Halaman 1 dari 3 ]") << endl;
     cout << padCenter("=========================================") << endl;
-    cout << padCenter("🌱  PILIH DAN STRUKTURKAN HOBI ANDA") << endl;
+    cout << padCenter("PILIH DAN STRUKTURKAN HOBI ANDA") << endl;
     cout << padCenter("=========================================") << endl;
     cout << padCenter("Ubah minat kasual Anda menjadi pohon") << endl;
     cout << padCenter("kebiasaan yang terarah dan produktif.") << endl;
@@ -62,7 +62,7 @@ void tampilkanOnboarding() {
     cout << "\n\n";
     cout << padCenter("[ Halaman 2 dari 3 ]") << endl;
     cout << padCenter("=========================================") << endl;
-    cout << padCenter("🔥  SESI FOKUSHARI DENGAN TIMER") << endl;
+    cout << padCenter("SESI FOKUSHARI DENGAN TIMER") << endl;
     cout << padCenter("=========================================") << endl;
     cout << padCenter("Gunakan sistem activity template pomodoro") << endl;
     cout << padCenter("untuk melatih fokus bebas dari distraksi.") << endl;
@@ -75,7 +75,7 @@ void tampilkanOnboarding() {
     cout << "\n\n";
     cout << padCenter("[ Halaman 3 dari 3 ]") << endl;
     cout << padCenter("=========================================") << endl;
-    cout << padCenter("🧠  SMART MOOD ANALYTICS REPORT") << endl;
+    cout << padCenter("SMART MOOD ANALYTICS REPORT") << endl;
     cout << padCenter("=========================================") << endl;
     cout << padCenter("Pantau kondisi mental Anda dan dapatkan") << endl;
     cout << padCenter("rekomendasi aktivitas pemulihan instan.") << endl;
