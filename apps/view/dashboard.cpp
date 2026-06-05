@@ -124,8 +124,8 @@ void tampilkanDashboard(string username, string email, string daftarHobi)
         cout << "10. Rekomendasi \n";
         cout << "0. Logout" << endl;
         cout << "======================================" << endl;
-        cout << "Pilih menu: ";
-        cin >> pilihan;
+     
+        pilihan = validasiInputAngka(0, 10, "Pilih Menu (0-10): ");
 
         switch (pilihan)
         {
