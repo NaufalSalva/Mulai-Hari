@@ -35,7 +35,7 @@ FormGaming inputFormGaming() {
 
     cout << "============= 1. NAMA GAME =============\n";
     cout << "Nama Game: ";
-    getline(cin, form.namaGame);
+    getline(cin >> ws, form.namaGame);
     
     while (!validasiNamaGame(form.namaGame)) {
         cout << "Nama game tidak valid! Masukkan lagi: ";

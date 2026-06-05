@@ -36,7 +36,7 @@ FormMenonton inputFormMenonton() {
 
     cout << "============= 1. JUDUL TONTONAN =============\n";
     cout << "Judul Tontonan: ";
-    getline(cin, form.judulTontonan);
+    getline(cin >> ws, form.judulTontonan);
     
     while (!validasiJudulTontonan(form.judulTontonan)) {
         cout << "Judul tontonan tidak valid! Masukkan lagi: ";

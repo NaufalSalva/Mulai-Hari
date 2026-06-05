@@ -45,7 +45,7 @@ FormTraveling inputFormTraveling() {
 
     cout << "============= 1. NAMA TEMPAT =============\n";
     cout << "Masukkan nama tempat tujuan: ";
-    getline(cin, form.tempatTujuan);
+    getline(cin >> ws, form.tempatTujuan);
     
     while (!validasiNamaTempat(form.tempatTujuan)) {
         cout << "Nama tempat tidak valid! Masukkan lagi: ";

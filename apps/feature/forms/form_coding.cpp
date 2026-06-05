@@ -49,7 +49,7 @@ FormCoding inputFormCoding() {
 
     cout << "============= 1. NAMA PROJEK =============\n";
     cout << "Masukkan nama projek: ";
-    getline(cin, form.namaProjek);
+    getline(cin >> ws, form.namaProjek);
     
     while (!validasiNamaProjek(form.namaProjek)) {
         cout << "Nama projek tidak valid! Masukkan lagi: ";

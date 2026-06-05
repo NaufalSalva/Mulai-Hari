@@ -43,7 +43,7 @@ FormMemasak inputFormMemasak() {
 
     cout << "============= 1. NAMA MASAKAN =============\n";
     cout << "Masukkan nama masakan: ";
-    getline(cin, form.namaMasakan);
+    getline(cin >> ws, form.namaMasakan);
     
     while (!validasiNamaMasakan(form.namaMasakan)) {
         cout << "Nama masakan tidak valid! Masukkan lagi: ";

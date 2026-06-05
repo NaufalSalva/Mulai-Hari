@@ -34,7 +34,7 @@ FormMenulis inputFormMenulis() {
 
     cout << "============= 1. JUDUL MENULIS =============\n";
     cout << "Judul Tulisan: ";
-    getline(cin, form.judulTulisan);
+    getline(cin >> ws, form.judulTulisan);
     
     while (!validasiJudulTulisan(form.judulTulisan)) {
         cout << "Judul tulisan tidak valid! Masukkan lagi: ";

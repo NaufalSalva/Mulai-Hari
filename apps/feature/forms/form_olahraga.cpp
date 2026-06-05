@@ -99,7 +99,8 @@ FormOlahraga inputFormOlahraga() {
     cout << "============= 1. JENIS OLAHRAGA =============\n";
     cout << "Lari, Gym, Yoga, Renang, Bersepeda\n";
     cout << "Masukkan jenis: ";
-    getline(cin, form.jenisOlahraga);
+
+    getline(cin >> ws, form.jenisOlahraga);
     
     while (!validasiJenisOlahraga(form.jenisOlahraga)) {
         cout << "Jenis olahraga tidak valid! Masukkan lagi: ";
@@ -146,7 +147,6 @@ FormOlahraga inputFormOlahraga() {
     tampilkanMenuWaktu();
     pilihan = validasiInputAngka(1, 4, "Pilih waktu (1-4): ");
     form.waktuAktivitas = pilihanWaktu(pilihan);
-    cin.ignore();
     
 
     cout << "\n============= 8. CATATAN TAMBAHAN =============\n";

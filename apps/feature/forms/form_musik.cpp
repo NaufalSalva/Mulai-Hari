@@ -33,7 +33,7 @@ FormMusik inputFormMusik() {
 
     cout << "============= 1. JUDUL LAGU =============\n";
     cout << "Masukkan hal yang dipelajari: ";
-    getline(cin, form.judulLagu);
+    getline(cin >> ws, form.judulLagu);
     
     while (!validasiJudulMusik(form.judulLagu)) {
         cout << "Judul lagu tidak valid! Masukkan lagi: ";

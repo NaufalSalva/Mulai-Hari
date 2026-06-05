@@ -35,7 +35,7 @@ FormMembaca inputFormMembaca() {
 
     cout << "============= 1. JUDUL BACAAN =============\n";
     cout << "Judul Bacaan: ";
-    getline(cin, form.judulBacaan);
+    getline(cin >> ws, form.judulBacaan);
     
     while (!validasiJudulBacaan(form.judulBacaan)) {
         cout << "Judul bacaan tidak valid! Masukkan lagi: ";

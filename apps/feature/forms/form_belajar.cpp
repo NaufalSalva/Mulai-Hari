@@ -32,7 +32,7 @@ FormBelajar inputFormBelajar() {
 
     cout << "============= 1. JUDUL BELAJAR =============\n";
     cout << "Masukkan hal yang dipelajari: ";
-    getline(cin, form.judulPelajaran);
+    getline(cin >> ws, form.judulPelajaran);
     
     while (!validasiJudulPelajaran(form.judulPelajaran)) {
         cout << "Judul pelajaran tidak valid! Masukkan lagi: ";
