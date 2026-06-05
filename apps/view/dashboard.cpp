@@ -5,6 +5,8 @@ using namespace std;
 
 void inputAktivitas();
 
+TaskList userTasks = {nullptr};
+
 void tampilkanDashboard(string username, string email, string daftarHobi)
 {
     int pilihan;
@@ -45,6 +47,7 @@ void tampilkanDashboard(string username, string email, string daftarHobi)
         cout << "6. Hapus Sub Habit\n";
         cout << "7. Hapus Aktivitas Terakhir\n";
         cout << "8. Riwayat Aktivitas\n";
+        cout << "9. Manajemen Tugas\n";
         cout << "0. Logout" << endl;
         cout << "======================================" << endl;
         cout << "Pilih menu: ";
@@ -76,6 +79,7 @@ void tampilkanDashboard(string username, string email, string daftarHobi)
             case 6: hapusSubHabit(root); system("pause"); break;
             case 7: hapusAktivitasTerakhir(historyStack); system("pause"); break;
             case 8: tampilkanRiwayatAktivitas(historyStack); system("pause"); break;
+            case 9: menuTaskManager(userTasks, username, root); system("pause"); break;
             case 0:
                 berjalan = false;
                 cout << "\n[Sistem] Logout berhasil." << endl;

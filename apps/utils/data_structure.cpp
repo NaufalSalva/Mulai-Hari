@@ -35,4 +35,16 @@ struct User {
     string password;
 };
 
+struct TaskNode {
+    string username;
+    string namaHabit;
+    string namaTask;
+    bool isSelesai;
+    TaskNode* next;
+};
+
+struct TaskList {
+    TaskNode* head;
+};
+
 #endif
